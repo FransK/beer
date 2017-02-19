@@ -7,10 +7,14 @@ import { BeerRoutingModule } from './beer-routing.module';
 
 import { BeerService } from './beer.service';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
+import { BeerThumbComponent } from './beer-thumb/beer-thumb.component';
+import { RecentsComponent } from './recents/recents.component';
 
 @NgModule({
   declarations: [
     BeerDetailsComponent,
+    BeerThumbComponent,
+    RecentsComponent,
   ],
   imports: [
     CommonModule,

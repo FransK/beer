@@ -1,0 +1,6 @@
+<h3>Recent Reviews</h3>
+<div>
+  <a *ngFor="let thisbeer of beers">
+    <app-beer-thumb [beer]="thisbeer"></app-beer-thumb>
+  </a>
+</div>
