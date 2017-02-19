@@ -6,9 +6,8 @@ import { RecentsComponent } from './recents/recents.component';
 
 const routes: Routes = [
   {
-    path: '',
-    component: RecentsComponent,
-  }
+    path: '', component: RecentsComponent
+  },
 ]
 
 @NgModule({
