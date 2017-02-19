@@ -1,5 +1,7 @@
-span {
-
+#Header {
+    height: 100px;
+    background-color: teal;
+    border: solid black
 }
 p {
   font-family: Arial;
