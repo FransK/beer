@@ -1,6 +1,13 @@
+* {
+  background-color: none;
+}
+
 #Header {
     height: 100px;
+    width: 100px;
     background-color: teal;
+    margin: auto;
+
 }
 p {
   font-family: Arial;
