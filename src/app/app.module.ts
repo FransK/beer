@@ -8,10 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { BeerModule } from './beer/beer.module';
 
 import { AppComponent } from './app.component';
+import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    LeftSidebarComponent,
   ],
   imports: [
     AppRoutingModule,
