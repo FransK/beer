@@ -1,7 +1,20 @@
+<<<<<<< HEAD
 #Header {
     height: 100px;
     background-color: teal;
     border: solid black
+=======
+* {
+  background-color: none;
+}
+
+#Header {
+    height: 100px;
+    width: 100px;
+    background-color: teal;
+    margin: auto;
+
+>>>>>>> origin/master
 }
 p {
   font-family: Arial;
