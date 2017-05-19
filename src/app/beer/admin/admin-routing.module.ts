@@ -6,6 +6,7 @@ import { AddBreweryComponent } from './add-brewery/add-brewery.component';
 import { AddCharacteristicsComponent } from './add-characteristics/add-characteristics.component';
 import { AddReviewComponent } from './add-review/add-review.component';
 import { AddReviewerComponent } from './add-reviewer/add-reviewer.component';
+import { AddTypeComponent } from './add-type/add-type.component';
 
 const routes: Routes = [
   { path: 'admin/add-beer', component: AddBeerComponent },
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'admin/add-characteristics', component: AddCharacteristicsComponent },
   { path: 'admin/add-review', component: AddReviewComponent },
   { path: 'admin/add-reviewer', component: AddReviewerComponent },
+  { path: 'admin/add-type', component: AddTypeComponent },
 ]
 
 @NgModule({

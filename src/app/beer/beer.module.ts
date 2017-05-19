@@ -13,6 +13,7 @@ import { AddBreweryComponent } from './admin/add-brewery/add-brewery.component';
 import { AddCharacteristicsComponent } from './admin/add-characteristics/add-characteristics.component';
 import { AddReviewComponent } from './admin/add-review/add-review.component';
 import { AddReviewerComponent } from './admin/add-reviewer/add-reviewer.component';
+import { AddTypeComponent } from './admin/add-type/add-type.component';
 import { AdminComponent } from './admin/admin.component';
 
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
@@ -27,6 +28,7 @@ import { RecentsComponent } from './recents/recents.component';
     AddCharacteristicsComponent,
     AddReviewComponent,
     AddReviewerComponent,
+    AddTypeComponent,
     BeerDetailsComponent,
     BeerThumbComponent,
     RecentsComponent,

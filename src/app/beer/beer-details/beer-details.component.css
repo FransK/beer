@@ -4,18 +4,11 @@
 
 #Header {
     height: 100px;
-    background-color: teal;
-    border: solid black
-}
-
-#Header {
-    height: 100px;
     width: 100px;
     background-color: teal;
     margin: auto;
-
->>>>>>> origin/master
 }
+
 p {
   font-family: Arial;
   font-size: 1em;
