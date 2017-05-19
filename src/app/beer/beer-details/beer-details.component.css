@@ -1,11 +1,11 @@
-<<<<<<< HEAD
+* {
+  background-color: none;
+}
+
 #Header {
     height: 100px;
     background-color: teal;
     border: solid black
-=======
-* {
-  background-color: none;
 }
 
 #Header {
