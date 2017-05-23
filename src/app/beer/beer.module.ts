@@ -6,6 +6,7 @@ import { HttpModule } from '@angular/http';
 import { AdminRoutingModule } from './admin/admin-routing.module';
 import { BeerRoutingModule } from './beer-routing.module';
 
+import { FirebaseService } from './data/firebase.service';
 import { BeerService } from './beer.service';
 
 import { AddBeerComponent } from './admin/add-beer/add-beer.component';
@@ -19,6 +20,7 @@ import { AdminComponent } from './admin/admin.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerThumbComponent } from './beer-thumb/beer-thumb.component';
 import { RecentsComponent } from './recents/recents.component';
+import { ReviewComponent } from './review/review.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,7 @@ import { RecentsComponent } from './recents/recents.component';
     BeerDetailsComponent,
     BeerThumbComponent,
     RecentsComponent,
+    ReviewComponent
   ],
   imports: [
     CommonModule,
@@ -44,6 +47,7 @@ import { RecentsComponent } from './recents/recents.component';
     BeerDetailsComponent,
   ],
   providers: [
+    FirebaseService,
     BeerService,
   ]
 })

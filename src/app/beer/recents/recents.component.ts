@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 import { Beer } from '../beer';
 import { BeerService } from '../beer.service';
+import { FirebaseService } from '../data/firebase.service';
 
 @Component({
   selector: 'app-recents',
@@ -10,11 +12,12 @@ import { BeerService } from '../beer.service';
 })
 export class RecentsComponent implements OnInit {
   beers: Beer[] = [];
+  recents: FirebaseListObservable<any>;
 
-  constructor(private beerService: BeerService) { }
+  constructor(private beerService: BeerService, private firebaseService: FirebaseService) { }
 
   ngOnInit() {
-    this.beerService.getBeers().then(beers => this.beers = beers);
+    this.recents = this.firebaseService.getFeatures();
   }
 
 }
