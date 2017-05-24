@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #F0F0F0;
+    font-family: "Verdana", sans-serif;
+}
+a {
+  padding: 5px 10px;
+  text-decoration: none;
+  margin-right: 10px;
+  margin-top: 10px;
+  display: inline-block;
+  background-color: #F0F0F0;
+  border-radius: 4px;
+}
+a:visited, a:link {
+  color: #FFC533;
+  background-color: #785706;
+}
+a:hover {
+  color: #785706;
+  background-color: #FFC533;
+}
+a.active {
+  color: #039be5;
+}
