@@ -1,5 +1,10 @@
 export class Beer {
-    id:number;
-    brewerId:number;
-    name:string;
+    constructor (
+        public beerid:string,
+        public breweryid:string,
+        public characteristics:{},
+        public name:string,
+        public type:string,
+    ) {  }
+    
 }

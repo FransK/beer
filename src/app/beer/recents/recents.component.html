@@ -1,13 +1,10 @@
 <h3>Recent Reviews</h3>
 <div>
   <a *ngFor="let feature of recents | async" [routerLink]="['/reviews', feature.beerid, feature.reviewerid]">
-    <h2>{{ feature.beer }}</h2>
-    <h2>{{ feature.reviewer }}</h2>
-    <div><h3>{{ feature.tagline }}</h3></div>
+    <div>
+      <h2>{{ feature.beer }}</h2>
+      <h3>{{ feature.reviewer }}</h3>
+      <div>{{ feature.tagline }}</div>
+    </div>
   </a>
 </div>
-<!--<div>
-  <a *ngFor="let thisbeer of beers">
-    <app-beer-thumb [beer]="thisbeer"></app-beer-thumb>
-  </a>
-</div>-->

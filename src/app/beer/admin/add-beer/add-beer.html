@@ -1,38 +1,67 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Add Beer</title>
-</head>
-<body>
-<form > 
-    <h2>Brewery</h2>
-    <select name="breweryIdDropdown">
-        <option value="Select" selected>Select Brewery</option>
-        <option value="Granville Island">Granville Island</option>
-        <option value="Tree">Tree</option>
-        <option value="Howe Sound">Howe Sound</option>
-    </select>
-    <h2>Id</h2>
-    <input type="text" name="id" />
-    <h2>Characteristics </h2>  
-        <input type="checkbox" name="Hoppy" value="on"> Hoppy 
-        <input type="checkbox" name="Easy-Drinking" value="on"> Easy Drinking
-        <input type="checkbox" name="Clean" value="on"> Clean
-        <input type="checkbox" name="Sweet" value="on"> Sweet
-        <input type="checkbox" name="Sour" value="on"> Sour
-        <input type="checkbox" name="Bitter" value="on"> Bitter
-        <input type="checkbox" name="Affordable" value="on"> Affordable
-        <input type="checkbox" name="Expensive" value="on"> Expensive
-        <input type="checkbox" name="Simple" value="on"> Simple
-        <input type="checkbox" name="Complex" value="on"> Complex
-    <h2>Type</h2>
-    <select name="breweryIdDropdown">
-        <option value="Select" selected>Select Type</option>
-        <option value="IPA">IPA</option>
-        <option value="Stout">Stout</option>
-        <option value="Lager">Lager</option>
-        <option value="Pale Ale">Pale Ale</option>
-    </select>
-</form>
-</body>
-</html>
+<div class="container">
+    <div [hidden]="submitted">
+        <h1>Add Beer Form</h1>
+        <form (ngSubmit)="onSubmit()" #beerForm="ngForm">
+            <div class="form-group">
+                <label class="center-block" for="name">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="beerModel.name" #name="ngModel">
+                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required</div>
+            </div>
+            <div class="form-group">
+                <label for="beerid">Beer ID</label>
+                <input type="text" class="form-control" id="beerid" name="beerid" required [(ngModel)]="beerModel.beerid" #beerid="ngModel">
+                <div [hidden]="beerid.valid || beerid.pristine" class="alert alert-danger">BeerId is required</div>
+            </div>
+            <div class="form-group">
+                <label for="breweryid">Brewery ID</label>
+                <select class="form-control" id="breweryid" name="breweryid" required [(ngModel)]="beerModel.breweryid" #breweryid="ngModel">
+                    <option *ngFor="let brewid of breweries" [value]="brewid">{{brewid}}</option>
+                </select>
+                <div [hidden]="breweryid.valid || breweryid.pristine" class="alert alert-danger">Brewery ID is required</div>
+            </div>
+            <div class="form-group">
+                <label class="center-block" for="characteristics">Characteristics</label>
+                <div *ngFor="let character of characteristics" class="checkbox">
+                    <label class="center-block"><input type="checkbox" name="character" [(ngModel)]="beerModel.characteristics[character]">{{character}}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="type">Type</label>
+                <select class="form-control" id="type" name="type" required [(ngModel)]="beerModel.type" #type="ngModel">
+                    <option *ngFor="let type of types" [value]="type">{{type}}</option>
+                </select>
+                <div [hidden]="type.valid || type.pristine" class="alert alert-danger">Type is required</div>
+            </div>
+
+            <button type="submit" class="btn btn-success" [disabled]="!beerForm.form.valid">Submit</button>
+        </form>
+
+        <p>Model value: {{ diagnostic }}</p>
+    </div>
+
+    <div [hidden]="!submitted">
+        <h2>You submitted the following:</h2>
+        <div class="row">
+            <div class="col-xs-3">Name</div>
+            <div class="col-xs-9  pull-left">{{ beerModel.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Beer ID</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.beerid }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Brewery ID</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.breweryid }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Characteristics</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.characteristics }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Type</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.type }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+    </div>
+</div>

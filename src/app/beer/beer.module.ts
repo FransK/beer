@@ -7,7 +7,6 @@ import { AdminRoutingModule } from './admin/admin-routing.module';
 import { BeerRoutingModule } from './beer-routing.module';
 
 import { FirebaseService } from './data/firebase.service';
-import { BeerService } from './beer.service';
 
 import { AddBeerComponent } from './admin/add-beer/add-beer.component';
 import { AddBreweryComponent } from './admin/add-brewery/add-brewery.component';
@@ -48,7 +47,6 @@ import { ReviewComponent } from './review/review.component';
   ],
   providers: [
     FirebaseService,
-    BeerService,
   ]
 })
 export class BeerModule { }

@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Beer } from '../beer';
-import { BeerService } from '../beer.service';
-
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
