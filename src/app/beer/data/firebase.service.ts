@@ -10,12 +10,24 @@ export class FirebaseService {
   constructor(private db: AngularFireDatabase) { }
 
   // Getters
+  getBreweries() : FirebaseListObservable<any> {
+    return this.db.list('/breweries');
+  }
+
+  getCharacteristics() : FirebaseListObservable<any> {
+    return this.db.list('/characteristics');
+  }
+  
   getFeatures() : FirebaseListObservable<any> {
     return this.db.list('/features');
   }
 
   getReview(beerid: string, reviewerid: string) : FirebaseObjectObservable<any> {
     return this.db.object(`/reviews/${beerid}/${reviewerid}`);
+  }
+
+  getTypes() : FirebaseListObservable<any> {
+    return this.db.list('types');
   }
 
   // Setters

@@ -1,16 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Beer } from '../../beer';
 
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+
+import { FirebaseService } from '../../data/firebase.service';
+
 @Component({
   selector: 'app-add-beer',
   templateUrl: './add-beer.html'
 })
-export class AddBeerComponent {
+export class AddBeerComponent implements OnInit {
   submitted = false;
   beerModel = new Beer('', '', {}, '', '');
-  breweries = ['Granville Island', 'Tree', 'Howe Sound'];
-  characteristics = ['Hoppy', 'Simple', 'Complex'];
-  types = ['IPA', 'Stout', 'Lager', 'Pale Ale'];
+  breweries: FirebaseListObservable<any>;
+  characteristics: FirebaseListObservable<any>;
+  types: FirebaseListObservable<any>;
+
+  constructor(private firebaseService: FirebaseService) { }
+
+  ngOnInit() {
+    this.breweries = this.firebaseService.getBreweries();
+    this.characteristics = this.firebaseService.getCharacteristics();
+    this.types = this.firebaseService.getTypes();
+  }
 
   // TODO: Remove this when we're done
   get diagnostic() { return JSON.stringify(this.beerModel); }
