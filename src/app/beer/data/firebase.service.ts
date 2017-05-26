@@ -14,6 +14,10 @@ export class FirebaseService {
   constructor(private db: AngularFireDatabase) { }
 
   // Getters
+  getBeers() : FirebaseListObservable<any> {
+    return this.db.list('/beers');
+  }
+
   getBreweries() : FirebaseListObservable<any> {
     return this.db.list('/breweries');
   }
@@ -28,6 +32,10 @@ export class FirebaseService {
 
   getReview(beerid: string, reviewerid: string) : FirebaseObjectObservable<any> {
     return this.db.object(`/reviews/${beerid}/${reviewerid}`);
+  }
+
+  getReviewers() : FirebaseListObservable<any> {
+    return this.db.list('/reviewers');
   }
 
   getTypes() : FirebaseListObservable<any> {
@@ -81,6 +89,28 @@ export class FirebaseService {
         currentChar.set(true);
       }
     });
+  }
+
+  addReview(review: Review) {
+    const currentReview = this.db.object(`/reviews/${review.beerid}/${review.reviewerid}`);
+    currentReview.take(1).subscribe(snapshot => {
+      if (!snapshot.$exists()) {
+        this.addReviewCallback(currentReview, review);
+      }
+    });
+  }
+
+  addReviewCallback(firebaseObject: FirebaseObjectObservable<any>, review: Review) {
+    var updatedReviewData = {};
+    updatedReviewData[`reviews/${review.beerid}/${review.reviewerid}`] = {
+      ranking: review.rating,
+      review: review.review,
+      tagline: review.tagline,
+      timestamp: new Date().getTime()
+    };
+    updatedReviewData[`reviewers/${review.reviewerid}/reviews/${review.beerid}`] = true;
+
+    this.db.object('/').update(updatedReviewData);
   }
 
   addReviewer(reviewer: Reviewer) {

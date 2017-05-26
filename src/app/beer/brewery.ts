@@ -3,6 +3,5 @@ export class Brewery {
         public breweryid:string,
         public location:string,
         public name:string,
-    ) {  }
-    
+    ) {}
 }
