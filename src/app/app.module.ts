@@ -24,11 +24,11 @@ import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
     AngularFireModule.initializeApp(environment.firebase, 'brew-review'), // imports firebase/app needed for everything
     AngularFireDatabaseModule, // imports firebase/database, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
-    AppRoutingModule,
-    BeerModule,
     BrowserModule,
     FormsModule,
     HttpModule,
+    BeerModule,
+    AppRoutingModule,
   ],
   bootstrap: [
     AppComponent

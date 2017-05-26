@@ -24,24 +24,10 @@ export class AddBeerComponent implements OnInit {
     this.types = this.firebaseService.getTypes();
   }
 
-  // TODO: Remove this when we're done
-  get diagnostic() { return JSON.stringify(this.beerModel); }
-
   onSubmit() {
     this.submitted = true;
+    
+    //Add the beer
+    this.firebaseService.addBeer(this.beerModel);
   }
 }
-
-
-
-  
-                // <!--<input type="checkbox" name="Hoppy" value="on"> Hoppy 
-                // <input type="checkbox" name="Easy-Drinking" value="on"> Easy Drinking
-                // <input type="checkbox" name="Clean" value="on"> Clean
-                // <input type="checkbox" name="Sweet" value="on"> Sweet
-                // <input type="checkbox" name="Sour" value="on"> Sour
-                // <input type="checkbox" name="Bitter" value="on"> Bitter
-                // <input type="checkbox" name="Affordable" value="on"> Affordable
-                // <input type="checkbox" name="Expensive" value="on"> Expensive
-                // <input type="checkbox" name="Simple" value="on"> Simple
-                // <input type="checkbox" name="Complex" value="on"> Complex-->

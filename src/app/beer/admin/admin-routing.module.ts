@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AdminComponent } from './admin.component';
 import { AddBeerComponent } from './add-beer/add-beer.component';
 import { AddBreweryComponent } from './add-brewery/add-brewery.component';
 import { AddCharacteristicsComponent } from './add-characteristics/add-characteristics.component';
@@ -9,12 +10,24 @@ import { AddReviewerComponent } from './add-reviewer/add-reviewer.component';
 import { AddTypeComponent } from './add-type/add-type.component';
 
 const routes: Routes = [
-  { path: 'admin/add-beer', component: AddBeerComponent },
-  { path: 'admin/add-brewery', component: AddBreweryComponent },
-  { path: 'admin/add-characteristics', component: AddCharacteristicsComponent },
-  { path: 'admin/add-review', component: AddReviewComponent },
-  { path: 'admin/add-reviewer', component: AddReviewerComponent },
-  { path: 'admin/add-type', component: AddTypeComponent },
+  {
+    path: '',
+    component: AdminComponent,
+    children: [
+      {
+        path: '',
+        children: [
+          { path: 'add-beer', component: AddBeerComponent },
+          { path: 'add-brewery', component: AddBreweryComponent },
+          { path: 'add-characteristics', component: AddCharacteristicsComponent },
+          { path: 'add-review', component: AddReviewComponent },
+          { path: 'add-reviewer', component: AddReviewerComponent },
+          { path: 'add-type', component: AddTypeComponent },
+        ]
+      }
+    ]
+  }
+  
 ]
 
 @NgModule({

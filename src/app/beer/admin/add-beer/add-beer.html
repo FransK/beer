@@ -1,6 +1,6 @@
 <div class="container">
     <div [hidden]="submitted">
-        <h1>Add Beer Form</h1>
+        <h1>Add Beer</h1>
         <form (ngSubmit)="onSubmit()" #beerForm="ngForm">
             <div class="form-group">
                 <label class="center-block" for="name">Name</label>
@@ -35,8 +35,6 @@
 
             <button type="submit" class="btn btn-success" [disabled]="!beerForm.form.valid">Submit</button>
         </form>
-
-        <p>Model value: {{ diagnostic }}</p>
     </div>
 
     <div [hidden]="!submitted">

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
+import { Beer } from '../beer';
 import { Review } from '../review';
 
 @Injectable()
@@ -31,29 +32,32 @@ export class FirebaseService {
   }
 
   // Setters
-  addBeer(beerid: string, breweryid: string, characteristics: string[], name: string, type: string) {
-    this.db.object(`/beers/${beerid}`).subscribe((beer) => {
-      if (beer.$exists) {
+  addBeer(beer: Beer) {
+    this.db.object(`/beers/${beer.beerid}`).$ref.transaction(currentBeer => {
+      if (currentBeer !== null) {
         // This beer already exists in the database
-        console.log('Beer already exists, try again');
+        console.log('Beer already exists');
       }
       else {
         // This is a new beer that we can add
-        var newCharacteristics = {};
-        characteristics.forEach(characteristic => {
-          newCharacteristics[characteristic] = 'true';
-        });
         var newBeer = {
-          brewery: breweryid,
-          characteristics: newCharacteristics,
-          name: name,
-          type: type
+          brewery: beer.breweryid,
+          characteristics: beer.characteristics,
+          name: beer.name,
+          type: beer.type
         };
 
-        beer.set(newBeer);
+        return newBeer;
       }
-      
     })
+    .then(result => {
+      if (result.committed) {
+        // Actions on success
+      }
+    })
+    .catch(error => {
+      // handle error
+    });
   }
 
 }
