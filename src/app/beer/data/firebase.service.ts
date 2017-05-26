@@ -6,6 +6,7 @@ import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable }
 import { Beer } from '../beer';
 import { Brewery } from '../brewery';
 import { Review } from '../review';
+import { Reviewer } from '../reviewer';
 
 @Injectable()
 export class FirebaseService {
@@ -78,6 +79,18 @@ export class FirebaseService {
     currentChar.take(1).subscribe(snapshot => {
       if (!snapshot.$exists()) {
         currentChar.set(true);
+      }
+    });
+  }
+
+  addReviewer(reviewer: Reviewer) {
+    const currentReviewer = this.db.object(`/reviewers/${reviewer.reviewerid}`);
+    currentReviewer.take(1).subscribe(snapshot => {
+      if (!snapshot.$exists()) {
+        var updatedReviewer = {
+          name: reviewer.name
+        }
+        currentReviewer.set(updatedReviewer);
       }
     });
   }
