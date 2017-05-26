@@ -14,6 +14,7 @@ const routes: Routes = [
       {
         path: '',
         children: [
+          { path: '', redirectTo: '/recents', pathMatch: 'full' },
           { path: 'recents', component: RecentsComponent },
           { path: 'reviews/:beerid/:reviewerid', component: ReviewComponent },
           { path: 'admin', loadChildren: 'app/beer/admin/admin.module#AdminModule' },
