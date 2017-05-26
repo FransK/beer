@@ -4,6 +4,7 @@ import 'rxjs/add/operator/take';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 import { Beer } from '../beer';
+import { Brewery } from '../brewery';
 import { Review } from '../review';
 
 @Injectable()
@@ -56,9 +57,20 @@ export class FirebaseService {
       updatedBeerData[`characteristics/${characteristic}/${beer.beerid}`] = true;
     }
 
-    // TODO: Actually update
-    console.log(JSON.stringify(updatedBeerData));
-    //this.db.object('/').update(updatedBeerData);
+    this.db.object('/').update(updatedBeerData);
+  }
+
+  addBrewery(brewery: Brewery) {
+    const currentBrewery = this.db.object(`/breweries/${brewery.breweryid}`);
+    currentBrewery.take(1).subscribe(snapshot => {
+      if (!snapshot.$exists()) {
+        var updatedBrewery = {
+          location: brewery.location,
+          name: brewery.name
+        }
+        currentBrewery.set(updatedBrewery);
+      }
+    });
   }
 
   addCharacteristic(characteristic: string) {

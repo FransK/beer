@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Beer } from '../../beer';
 
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import { FirebaseListObservable } from 'angularfire2/database';
 import { FirebaseService } from '../../data/firebase.service';
 
 @Component({
@@ -30,8 +30,6 @@ export class AddBeerComponent implements OnInit {
 
   onVerified() {
     this.verified = true;
-    
-    //Add the beer
     this.firebaseService.addBeer(this.beerModel);
   }
 }

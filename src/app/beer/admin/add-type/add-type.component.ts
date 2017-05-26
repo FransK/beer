@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { FirebaseService } from '../../data/firebase.service';
 
 @Component({
@@ -15,8 +14,6 @@ export class AddTypeComponent {
 
   onSubmit() {
     this.submitted = true;
-    
-    //Add the characteristic
     this.firebaseService.addType(this.type);
   }
 
