@@ -1,6 +1,6 @@
 <div class="container">
     <div [hidden]="submitted">
-        <h1>Add Beer</h1>
+        <h3>Add Beer</h3>
         <form (ngSubmit)="onSubmit()" #beerForm="ngForm">
             <div class="form-group">
                 <label class="center-block" for="name">Name</label>
@@ -37,8 +37,8 @@
         </form>
     </div>
 
-    <div [hidden]="!submitted">
-        <h2>You submitted the following:</h2>
+    <div [hidden]="!submitted || verified">
+        <h2>You are about to submit the following:</h2>
         <div class="row">
             <div class="col-xs-3">Name</div>
             <div class="col-xs-9  pull-left">{{ beerModel.name }}</div>
@@ -53,13 +53,40 @@
         </div>
         <div class="row">
             <div class="col-xs-3">Characteristics</div>
-            <div class="col-xs-9 pull-left">{{ beerModel.characteristics }}</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.characteristics | json }}</div>
         </div>
         <div class="row">
             <div class="col-xs-3">Type</div>
             <div class="col-xs-9 pull-left">{{ beerModel.type }}</div>
         </div>
         <br>
-        <button class="btn btn-primary" (click)="submitted=false">Edit</button>
+        <button class="btn btn-success" (click)="onVerified()">Submit</button>
+        <button class="btn btn-danger" (click)="submitted=false">Edit</button>
+    </div>
+
+    <div [hidden]="!verified">
+        <h2>Success! Beer added.</h2>
+        <div class="row">
+            <div class="col-xs-3">Name</div>
+            <div class="col-xs-9  pull-left">{{ beerModel.name }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Beer ID</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.beerid }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Brewery ID</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.breweryid }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Characteristics</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.characteristics | json }}</div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3">Type</div>
+            <div class="col-xs-9 pull-left">{{ beerModel.type }}</div>
+        </div>
+        <br>
+        <button class="btn btn-primary" (click)="submitted=false; verified=false">Add Another</button>
     </div>
 </div>
