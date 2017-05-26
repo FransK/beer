@@ -20,8 +20,8 @@ import { ReviewComponent } from './review/review.component';
     CommonModule,
     FormsModule,
     HttpModule,
-    AdminModule,
     BeerRoutingModule,
+    AdminModule,
   ],
   declarations: [
     BeerComponent,
