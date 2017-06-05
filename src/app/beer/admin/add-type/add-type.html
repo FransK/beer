@@ -4,7 +4,7 @@
         <form (ngSubmit)="onSubmit()" #typeForm="ngForm">
             <div class="form-group">
                 <label class="center-block" for="inputType">Type</label>
-                <input type="text" class="form-control" id="inputType" name="inputType" required [(ngModel)]="type" #inputType="ngModel">
+                <input type="text" class="form-control" id="inputType" name="inputType" required maxlength="20" [(ngModel)]="type" #inputType="ngModel">
                 <div [hidden]="inputType.valid || inputType.pristine" class="alert alert-danger">Type is required</div>
             </div>
 
