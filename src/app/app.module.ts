@@ -13,12 +13,10 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { BeerModule } from './beer/beer.module';
 import { AppComponent } from './app.component';
-import { LeftSidebarComponent } from './left-sidebar/left-sidebar.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    LeftSidebarComponent,
+    AppComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase, 'brew-review'), // imports firebase/app needed for everything
