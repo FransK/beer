@@ -1,6 +1,32 @@
 {
   "rules": {
-    ".read": "true",
-    ".write": "true"
+    "beers": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "breweries": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "characteristics": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "features": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "reviewers": {
+      ".read": "true",
+      ".write": "true"
+    },
+    "reviews": {
+      ".read": "true",
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
+    },
+    "types": {
+      ".read": "true",
+      ".write": "true"
+    }
   }
 }

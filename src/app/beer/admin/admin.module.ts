@@ -12,10 +12,13 @@ import { AddTypeComponent } from './add-type/add-type.component';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
+import { ToolsModule } from '../../tools/tools.module';
+
 @NgModule({
     imports: [
         CommonModule,
         FormsModule,
+        ToolsModule,
         AdminRoutingModule
     ],
     declarations: [

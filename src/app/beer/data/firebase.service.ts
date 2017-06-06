@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/take';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 
 import { Beer } from '../beer';
@@ -11,7 +12,7 @@ import { Reviewer } from '../reviewer';
 @Injectable()
 export class FirebaseService {
 
-  constructor(private db: AngularFireDatabase) { }
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) { }
 
   // Getters
   getBeers() : FirebaseListObservable<any> {
@@ -117,10 +118,25 @@ export class FirebaseService {
     const currentReviewer = this.db.object(`/reviewers/${reviewer.reviewerid}`);
     currentReviewer.take(1).subscribe(snapshot => {
       if (!snapshot.$exists()) {
+        // Create newly authenticated user
+        this.afAuth.auth.createUserWithEmailAndPassword(reviewer.email, reviewer.password).catch(function(error) {
+          // handle Errors here.
+          var errorName = error.name;
+          var errorMessage = error.message;
+        });
+        
+        // Update the database
         var updatedReviewer = {
-          name: reviewer.name
+          email: reviewer.email,
+          name: reviewer.name,
+          reviewerid: reviewer.reviewerid,
+          verified: false,
         }
-        currentReviewer.set(updatedReviewer);
+
+        var user = this.afAuth.authState;
+        user.take(1).subscribe(currentUser => {
+          this.db.object(`/reviewers/${currentUser.uid}`).update(updatedReviewer);
+        })
       }
     });
   }

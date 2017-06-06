@@ -10,9 +10,10 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { environment } from '../environments/environment';
 
 // Base modules and components
+import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BeerModule } from './beer/beer.module';
-import { AppComponent } from './app.component';
+import { ToolsModule } from './tools/tools.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    ToolsModule,
     BeerModule,
     AppRoutingModule,
   ],

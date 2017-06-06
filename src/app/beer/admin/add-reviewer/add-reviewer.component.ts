@@ -9,7 +9,7 @@ import { FirebaseService } from '../../data/firebase.service';
 })
 export class AddReviewerComponent {
   submitted = false;
-  reviewerModel = new Reviewer('', '');
+  reviewerModel = new Reviewer('', '', '', '', '');
 
   constructor(private firebaseService: FirebaseService) { }
 
