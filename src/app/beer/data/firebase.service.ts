@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/take';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
+import * as firebase from 'firebase/app';
 
 import { Beer } from '../beer';
 import { Brewery } from '../brewery';
@@ -13,6 +15,11 @@ import { Reviewer } from '../reviewer';
 export class FirebaseService {
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) { }
+
+  // Auth
+  getCurrentUser() : Observable<firebase.User> {
+    return this.afAuth.authState;
+  }
 
   // Getters
   getBeers() : FirebaseListObservable<any> {
@@ -96,12 +103,12 @@ export class FirebaseService {
     const currentReview = this.db.object(`/reviews/${review.beerid}/${review.reviewerid}`);
     currentReview.take(1).subscribe(snapshot => {
       if (!snapshot.$exists()) {
-        this.addReviewCallback(currentReview, review);
+        this.addReviewCallback(review);
       }
     });
   }
 
-  addReviewCallback(firebaseObject: FirebaseObjectObservable<any>, review: Review) {
+  addReviewCallback(review: Review) {
     var updatedReviewData = {};
     updatedReviewData[`reviews/${review.beerid}/${review.reviewerid}`] = {
       ranking: review.rating,
@@ -123,21 +130,32 @@ export class FirebaseService {
           // handle Errors here.
           var errorName = error.name;
           var errorMessage = error.message;
+        }).then((user) => {
+          this.addReviewerCallback(reviewer, user);
+        }, function(error) {
+          // Creation error
         });
-        
-        // Update the database
-        var updatedReviewer = {
-          email: reviewer.email,
-          name: reviewer.name,
-          reviewerid: reviewer.reviewerid,
-          verified: false,
-        }
-
-        var user = this.afAuth.authState;
-        user.take(1).subscribe(currentUser => {
-          this.db.object(`/reviewers/${currentUser.uid}`).update(updatedReviewer);
-        })
       }
+    });
+  }
+
+  addReviewerCallback(reviewer: Reviewer, user: firebase.User) {
+    // Update the database
+    var updatedReviewer = {
+      email: reviewer.email,
+      name: reviewer.name,
+      reviewerid: reviewer.reviewerid,
+      verified: false,
+    }
+
+    user.updateProfile({
+      displayName: reviewer.name,
+      photoURL: ''
+    }).then(() => {
+      // Update success
+      this.db.object(`/reviewers/${user.uid}`).update(updatedReviewer);
+    }, function(error) {
+      // Update error
     });
   }
 

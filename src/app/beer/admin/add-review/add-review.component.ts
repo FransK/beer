@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
+
 import { Review } from '../../review';
 
 import { FirebaseListObservable } from 'angularfire2/database';
@@ -14,12 +17,14 @@ export class AddReviewComponent implements OnInit {
   reviewModel = new Review('', '', 0, '', '', 0);
   beers: FirebaseListObservable<any>;
   reviewers: FirebaseListObservable<any>;
+  currentReviewer: Observable<firebase.User>;
 
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.beers = this.firebaseService.getBeers();
     this.reviewers = this.firebaseService.getReviewers();
+    this.currentReviewer = this.firebaseService.getCurrentUser();
   }
 
   onSubmit() {

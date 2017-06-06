@@ -3,11 +3,10 @@
         <h3>Add Review</h3>
         <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
             <div class="form-group">
-                <label for="reviewerid">Reviewer</label>
-                <select class="form-control" id="reviewerid" name="reviewerid" required [(ngModel)]="reviewModel.reviewerid" #reviewerid="ngModel">
-                    <option *ngFor="let reviewer of reviewers | async" [value]="reviewer.$key">{{reviewer.name}}</option>
-                </select>
-                <div [hidden]="reviewerid.valid || reviewerid.pristine" class="alert alert-danger">Reviewer is required</div>
+                <label class="control-label" for="reviewerid">Reviewer</label>
+                <div>
+                    <p class="form-control-static">{{(currentReviewer | async)?.displayName}}</p>
+                </div>
             </div>
             <div class="form-group">
                 <label for="beerid">Beer</label>
