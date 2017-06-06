@@ -8,7 +8,6 @@ import { AddCharacteristicsComponent } from './add-characteristics/add-character
 import { AddReviewComponent } from './add-review/add-review.component';
 import { AddReviewerComponent } from './add-reviewer/add-reviewer.component';
 import { AddTypeComponent } from './add-type/add-type.component';
-import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -24,7 +23,6 @@ const routes: Routes = [
           { path: 'add-review', component: AddReviewComponent },
           { path: 'add-reviewer', component: AddReviewerComponent },
           { path: 'add-type', component: AddTypeComponent },
-          { path: 'login', component: LoginComponent },
         ]
       }
     ]

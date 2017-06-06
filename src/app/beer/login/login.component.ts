@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase/app';
 
-import { FirebaseService } from '../../data/firebase.service';
+import { FirebaseService } from '../data/firebase.service';
 
 @Component({
   selector: 'app-login',

@@ -14,6 +14,7 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerThumbComponent } from './beer-thumb/beer-thumb.component';
 import { RecentsComponent } from './recents/recents.component';
 import { ReviewComponent } from './review/review.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   imports: [
@@ -28,7 +29,8 @@ import { ReviewComponent } from './review/review.component';
     BeerDetailsComponent,
     BeerThumbComponent,
     RecentsComponent,
-    ReviewComponent
+    ReviewComponent,
+    LoginComponent    
   ],
   exports: [
     BeerDetailsComponent,

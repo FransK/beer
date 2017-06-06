@@ -9,7 +9,6 @@ import { AddCharacteristicsComponent } from './add-characteristics/add-character
 import { AddReviewComponent } from './add-review/add-review.component';
 import { AddReviewerComponent } from './add-reviewer/add-reviewer.component';
 import { AddTypeComponent } from './add-type/add-type.component';
-import { LoginComponent } from './login/login.component';
 
 import { AdminRoutingModule } from './admin-routing.module';
 
@@ -29,8 +28,7 @@ import { ToolsModule } from '../../tools/tools.module';
         AddCharacteristicsComponent,
         AddReviewComponent,
         AddReviewerComponent,
-        AddTypeComponent,
-        LoginComponent
+        AddTypeComponent
     ]
 })
 export class AdminModule {}

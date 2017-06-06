@@ -1,7 +1,4 @@
-<div>
-    <h1> BEER BEER BEER BEER BEER... </h1>
-</div>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#myNavbar" aria-expanded="false">
@@ -17,8 +14,14 @@
                 <li routerLinkActive="active"><a [routerLink]="['/recents']">Recents</a></li>
                 <li *ngIf="currentReviewer" routerLinkActive="active"><a [routerLink]="['/admin']">Admin</a></li>
             </ul>
-            <button *ngIf="currentReviewer" (click)="onClickLogout()" class="btn navbar-btn navbar-right">Logout</button>
+            <ul *ngIf="!currentReviewer" class="nav navbar-nav navbar-right">
+                <li routerLinkActive="active"><a [routerLink]="['/login']"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            </ul>
+            <button *ngIf="currentReviewer" (click)="onClickLogout()" class="btn navbar-btn navbar-right"><span class="glyphicon glyphicon-log-out"></span> Logout</button>
         </div>
     </div>
 </nav>
-<router-outlet></router-outlet>
+<div class="container" style="margin-top:50px">
+    <h1> BEER BEER BEER BEER BEER... </h1>
+    <router-outlet></router-outlet>
+</div>
