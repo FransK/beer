@@ -18,7 +18,7 @@
     },
     "reviewers": {
       ".read": "true",
-      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
+      ".write": "true"
     },
     "reviews": {
       ".read": "true",
