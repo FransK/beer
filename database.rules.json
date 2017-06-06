@@ -2,23 +2,23 @@
   "rules": {
     "beers": {
       ".read": "true",
-      ".write": "true"
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "breweries": {
       ".read": "true",
-      ".write": "true"
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "characteristics": {
       ".read": "true",
-      ".write": "true"
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "features": {
       ".read": "true",
-      ".write": "true"
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "reviewers": {
       ".read": "true",
-      ".write": "true"
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "reviews": {
       ".read": "true",
@@ -26,7 +26,7 @@
     },
     "types": {
       ".read": "true",
-      ".write": "true"
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     }
   }
 }
