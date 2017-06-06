@@ -21,6 +21,10 @@ export class FirebaseService {
     return this.afAuth.authState;
   }
 
+  loginUser(email: string, password: string): firebase.Promise<any> {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
   // Getters
   getBeers() : FirebaseListObservable<any> {
     return this.db.list('/beers');
