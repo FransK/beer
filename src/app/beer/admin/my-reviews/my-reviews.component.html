@@ -1,0 +1,5 @@
+<div>
+    <div *ngFor="let review of reviews | async">
+        <a [routerLink]="['/reviews', review.$key, reviewerid]">{{review.$key}}</a>
+    </div>
+</div>

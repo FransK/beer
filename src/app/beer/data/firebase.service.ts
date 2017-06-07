@@ -45,6 +45,10 @@ export class FirebaseService {
   getCurrentReviewer(userId: string) : FirebaseObjectObservable<any> {
     return this.db.object(`/reviewers/${userId}`);
   }
+
+  getCurrentUserReviews(userId: string) : FirebaseListObservable<any> {
+    return this.db.list(`/reviewers/${userId}/reviews`);
+  }
   
   getFeatures() : FirebaseListObservable<any> {
     return this.db.list('/features');

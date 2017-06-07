@@ -23,7 +23,8 @@
                 <li class="dropdown" ngbDropdown style="cursor:pointer">
                     <a class="dropdown-toggle" id="dropdownUser" ngbDropdownToggle>{{(currentReviewer)?.displayName}}<span class="caret"></span></a>
                     <ul class="dropdown-menu" aria-labelledby="dropdownUser">
-                        <li class="dropdown-item"><a (click)="onClickLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                        <li class="dropdown-item"><a [routerLink]="['/admin/my-reviews']">My Reviews</a></li>
+                        <li class="dropdown-item"><a (click)="onClickLogout()"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
                     </ul>
                 </li>
             </ul>

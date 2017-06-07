@@ -16,7 +16,6 @@ export class AddReviewComponent implements OnInit {
   verified = false;
   reviewModel = new Review('', '', 0, '', '', 0);
   beers: FirebaseListObservable<any>;
-  reviewers: FirebaseListObservable<any>;
   currentUser: Observable<firebase.User>;
   currentReviewer: FirebaseObjectObservable<any>;
 
@@ -24,7 +23,6 @@ export class AddReviewComponent implements OnInit {
 
   ngOnInit() {
     this.beers = this.firebaseService.getBeers();
-    this.reviewers = this.firebaseService.getReviewers();
     this.currentUser = this.firebaseService.getCurrentUser();
     this.getReviewer();
   }
