@@ -24,3 +24,26 @@
   overflow:hidden;
   text-align:center;
 }
+
+.navbar li.dropdown.show > a {
+  color: #fff;
+  background-color: #080808;
+}
+
+.navbar li.dropdown.show > ul {
+  background-color: #222;
+  border-color: #080808;
+}
+
+.dropdown-menu > li > a {
+  background-color: transparent;
+  color: #9d9d9d;
+}
+
+.dropdown-menu > li > a:hover {
+  color: #fff;
+}
+
+.dropdown-menu > li.dropdown-item:hover {
+  background-color: #080808;
+}
