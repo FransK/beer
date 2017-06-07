@@ -8,6 +8,9 @@ import { FirebaseService } from './data/firebase.service';
 @Component({
   selector: 'app-beer',
   templateUrl: './beer.component.html',
+  styleUrls: [
+    './beer.component.css'
+  ]
 })
 export class BeerComponent implements OnInit {
   currentReviewer: Observable<firebase.User>;
