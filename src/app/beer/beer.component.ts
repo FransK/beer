@@ -14,6 +14,7 @@ import { FirebaseService } from './data/firebase.service';
 })
 export class BeerComponent implements OnInit {
   currentReviewer: Observable<firebase.User>;
+  public navbarCollapsed = false;
 
   constructor(private firebaseService: FirebaseService, private afAuth: AngularFireAuth) { }
 

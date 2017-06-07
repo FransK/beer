@@ -3,6 +3,7 @@
   height:600px;
   background-image:url('/assets/header.JPG');
   background-size:cover;
+  padding-top:20px;
 }
 
 .wide img {

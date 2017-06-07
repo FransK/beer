@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AdminModule } from './admin/admin.module';
 import { BeerRoutingModule } from './beer-routing.module';
 
@@ -21,6 +24,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     FormsModule,
     HttpModule,
+    NgbModule,
     BeerRoutingModule,
     AdminModule,
   ],
@@ -30,7 +34,7 @@ import { LoginComponent } from './login/login.component';
     BeerThumbComponent,
     RecentsComponent,
     ReviewComponent,
-    LoginComponent    
+    LoginComponent,
   ],
   exports: [
     BeerDetailsComponent,

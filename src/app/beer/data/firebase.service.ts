@@ -41,6 +41,10 @@ export class FirebaseService {
   getCharacteristics() : FirebaseListObservable<any> {
     return this.db.list('/characteristics');
   }
+
+  getCurrentReviewer(userId: string) : FirebaseObjectObservable<any> {
+    return this.db.object(`/reviewers/${userId}`);
+  }
   
   getFeatures() : FirebaseListObservable<any> {
     return this.db.list('/features');
@@ -108,15 +112,18 @@ export class FirebaseService {
   }
 
   addReview(review: Review) {
-    const currentReview = this.db.object(`/reviews/${review.beerid}/${review.reviewerid}`);
-    currentReview.take(1).subscribe(snapshot => {
-      if (!snapshot.$exists()) {
-        this.addReviewCallback(review);
-      }
-    });
+    var user = this.afAuth.auth.currentUser;
+    if (user) {
+      const currentReview = this.db.object(`/reviews/${review.beerid}/${review.reviewerid}`);
+      currentReview.take(1).subscribe(snapshot => {
+        if (!snapshot.$exists()) {
+          this.addReviewCallback(review, user);
+        }
+      });
+    }
   }
 
-  addReviewCallback(review: Review) {
+  addReviewCallback(review: Review, user: firebase.User) {
     var updatedReviewData = {};
     updatedReviewData[`reviews/${review.beerid}/${review.reviewerid}`] = {
       ranking: review.rating,
@@ -124,26 +131,20 @@ export class FirebaseService {
       tagline: review.tagline,
       timestamp: new Date().getTime()
     };
-    updatedReviewData[`reviewers/${review.reviewerid}/reviews/${review.beerid}`] = true;
+    updatedReviewData[`reviewers/${user.uid}/reviews/${review.beerid}`] = true;
 
     this.db.object('/').update(updatedReviewData);
   }
 
   addReviewer(reviewer: Reviewer) {
-    const currentReviewer = this.db.object(`/reviewers/${reviewer.reviewerid}`);
-    currentReviewer.take(1).subscribe(snapshot => {
-      if (!snapshot.$exists()) {
-        // Create newly authenticated user
-        this.afAuth.auth.createUserWithEmailAndPassword(reviewer.email, reviewer.password).catch(function(error) {
-          // handle Errors here.
-          var errorName = error.name;
-          var errorMessage = error.message;
-        }).then((user) => {
-          this.addReviewerCallback(reviewer, user);
-        }, function(error) {
-          // Creation error
-        });
-      }
+    this.afAuth.auth.createUserWithEmailAndPassword(reviewer.email, reviewer.password).catch(function(error) {
+      // handle Errors here.
+      var errorName = error.name;
+      var errorMessage = error.message;
+    }).then((user) => {
+      this.addReviewerCallback(reviewer, user);
+    }, function(error) {
+      // Creation error
     });
   }
 

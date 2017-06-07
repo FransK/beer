@@ -4,7 +4,7 @@ import * as firebase from 'firebase/app';
 
 import { Review } from '../../review';
 
-import { FirebaseListObservable } from 'angularfire2/database';
+import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/database';
 import { FirebaseService } from '../../data/firebase.service';
 
 @Component({
@@ -17,14 +17,25 @@ export class AddReviewComponent implements OnInit {
   reviewModel = new Review('', '', 0, '', '', 0);
   beers: FirebaseListObservable<any>;
   reviewers: FirebaseListObservable<any>;
-  currentReviewer: Observable<firebase.User>;
+  currentUser: Observable<firebase.User>;
+  currentReviewer: FirebaseObjectObservable<any>;
 
   constructor(private firebaseService: FirebaseService) { }
 
   ngOnInit() {
     this.beers = this.firebaseService.getBeers();
     this.reviewers = this.firebaseService.getReviewers();
-    this.currentReviewer = this.firebaseService.getCurrentUser();
+    this.currentUser = this.firebaseService.getCurrentUser();
+    this.getReviewer();
+  }
+
+  getReviewer() {
+    this.currentUser.take(1).subscribe((user) => {
+      this.currentReviewer = this.firebaseService.getCurrentReviewer(user.uid);
+      this.currentReviewer.take(1).subscribe((reviewer) => {
+        this.reviewModel.reviewerid = reviewer.reviewerid;
+      })
+    })
   }
 
   onSubmit() {

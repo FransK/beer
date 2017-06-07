@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+// Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 // Angular Fire
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -26,6 +29,7 @@ import { ToolsModule } from './tools/tools.module';
     BrowserModule,
     FormsModule,
     HttpModule,
+    NgbModule.forRoot(),
     ToolsModule,
     BeerModule,
     AppRoutingModule,
