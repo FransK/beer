@@ -13,6 +13,7 @@
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "features": {
+      ".indexOn": "reviewer",
       ".read": "true",
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },

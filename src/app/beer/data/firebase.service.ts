@@ -55,14 +55,18 @@ export class FirebaseService {
   }
   
   getFeatures() : FirebaseListObservable<any> {
-    return this.db.list('/features');
+    return this.db.list('/features', {
+      query: {
+        orderByChild: 'reviewer'
+      }
+    });
   }
 
   getNRecentReviews(n: number) : FirebaseListObservable<any> {
     return this.db.list('/recents', {
       query: {
         orderByChild: 'timestamp',
-        limitToLast: n
+        limitToFirst: n
       }
     });
   }
@@ -146,12 +150,12 @@ export class FirebaseService {
       ranking: review.rating,
       review: review.review,
       tagline: review.tagline,
-      timestamp: new Date().getTime()
+      timestamp: review.timestamp
     };
-
     updatedReviewData[`reviewers/${user.uid}/reviews/${review.beerid}`] = true;
 
     this.db.object('/').update(updatedReviewData);
+    this.createRecent(review);
   }
 
   addReviewer(reviewer: Reviewer) {
@@ -193,6 +197,21 @@ export class FirebaseService {
         currentType.set(true);
       }
     });
+  }
+
+  // Private methods
+  private createRecent(review: Review) {
+    const recents = this.db.list('/recents');
+    var newReview = {
+      beer: review.beer,
+      beerid: review.beerid,
+      reviewer: review.reviewer,
+      reviewerid: review.reviewerid,
+      tagline: review.tagline,
+      timestamp: review.timestamp
+    }
+
+    recents.push(newReview);
   }
 
 }

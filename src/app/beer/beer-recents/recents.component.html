@@ -1,8 +1,12 @@
-<h3>Recent Reviews</h3>
-<div>
+<div class="container-fluid">
+  <h2>Recent Reviews</h2>
   <a *ngFor="let recent of recents | async" [routerLink]="['/reviews', recent.beerid, recent.reviewerid]">
-    <div>
-      <h2>{{ recent.beer }}</h2>
+    <div class="row">
+      <h3>
+        <div class="col-sm-2"><small>{{-recent.timestamp | date: 'yyyy-MM-dd h:mm:ssa'}}</small></div>
+        <div class="col-sm-6">{{ recent.beer }}</div>
+        <div class="col-sm-4"><small>As reviewed by: {{ recent.reviewer }}</small></div>
+      </h3>
     </div>
   </a>
 </div>

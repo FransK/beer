@@ -15,6 +15,6 @@ export class RecentsComponent {
     constructor(private firebaseService: FirebaseService) { }
 
     ngOnInit() {
-        this.recents = this.firebaseService.getNRecentReviews(1);
+        this.recents = this.firebaseService.getNRecentReviews(5);
     }
 }

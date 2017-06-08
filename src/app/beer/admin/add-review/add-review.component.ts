@@ -40,6 +40,7 @@ export class AddReviewComponent implements OnInit {
   onSubmit() {
     this.firebaseService.getBeerById(this.reviewModel.beerid).take(1).subscribe(beer => {
       this.reviewModel.beer = beer.name;
+      this.reviewModel.timestamp = new Date().getTime();
       this.submitted = true;
     })
   }
