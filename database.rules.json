@@ -16,6 +16,11 @@
       ".read": "true",
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
+    "recents": {
+      ".indexOn": "timestamp",
+      ".read": "true",
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
+    },
     "reviewers": {
       ".read": "true",
       ".write": "true"

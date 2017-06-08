@@ -14,7 +14,7 @@ import { FirebaseService } from '../../data/firebase.service';
 export class AddReviewComponent implements OnInit {
   submitted = false;
   verified = false;
-  reviewModel = new Review('', '', 0, '', '', 0);
+  reviewModel = new Review('', '', '', '', 0, '', '', 0);
   beers: FirebaseListObservable<any>;
   currentUser: Observable<firebase.User>;
   currentReviewer: FirebaseObjectObservable<any>;
@@ -31,13 +31,17 @@ export class AddReviewComponent implements OnInit {
     this.currentUser.take(1).subscribe((user) => {
       this.currentReviewer = this.firebaseService.getCurrentReviewer(user.uid);
       this.currentReviewer.take(1).subscribe((reviewer) => {
+        this.reviewModel.reviewer = reviewer.name;
         this.reviewModel.reviewerid = reviewer.reviewerid;
       })
     })
   }
 
   onSubmit() {
-    this.submitted = true;
+    this.firebaseService.getBeerById(this.reviewModel.beerid).take(1).subscribe(beer => {
+      this.reviewModel.beer = beer.name;
+      this.submitted = true;
+    })
   }
 
   onVerified() {

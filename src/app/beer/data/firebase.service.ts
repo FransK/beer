@@ -30,6 +30,10 @@ export class FirebaseService {
   }
 
   // Getters
+  getBeerById(beerid:string) : FirebaseObjectObservable<any> {
+    return this.db.object(`/beers/${beerid}`);
+  }
+
   getBeers() : FirebaseListObservable<any> {
     return this.db.list('/beers');
   }
@@ -42,16 +46,25 @@ export class FirebaseService {
     return this.db.list('/characteristics');
   }
 
-  getCurrentReviewer(userId: string) : FirebaseObjectObservable<any> {
-    return this.db.object(`/reviewers/${userId}`);
+  getCurrentReviewer(userid: string) : FirebaseObjectObservable<any> {
+    return this.db.object(`/reviewers/${userid}`);
   }
 
-  getCurrentUserReviews(userId: string) : FirebaseListObservable<any> {
-    return this.db.list(`/reviewers/${userId}/reviews`);
+  getCurrentUserReviews(userid: string) : FirebaseListObservable<any> {
+    return this.db.list(`/reviewers/${userid}/reviews`);
   }
   
   getFeatures() : FirebaseListObservable<any> {
     return this.db.list('/features');
+  }
+
+  getNRecentReviews(n: number) : FirebaseListObservable<any> {
+    return this.db.list('/recents', {
+      query: {
+        orderByChild: 'timestamp',
+        limitToLast: n
+      }
+    });
   }
 
   getReview(beerid: string, reviewerid: string) : FirebaseObjectObservable<any> {
@@ -135,6 +148,7 @@ export class FirebaseService {
       tagline: review.tagline,
       timestamp: new Date().getTime()
     };
+
     updatedReviewData[`reviewers/${user.uid}/reviews/${review.beerid}`] = true;
 
     this.db.object('/').update(updatedReviewData);

@@ -1,0 +1,10 @@
+<h3>Featured Reviews</h3>
+<div>
+  <a *ngFor="let feature of features | async" [routerLink]="['/reviews', feature.beerid, feature.reviewerid]">
+    <div>
+      <h2>{{ feature.beer }}</h2>
+      <h3>{{ feature.reviewer }}</h3>
+      <div>{{ feature.tagline }}</div>
+    </div>
+  </a>
+</div>

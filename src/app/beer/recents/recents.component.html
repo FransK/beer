@@ -1,10 +1,8 @@
 <h3>Recent Reviews</h3>
 <div>
-  <a *ngFor="let feature of recents | async" [routerLink]="['/reviews', feature.beerid, feature.reviewerid]">
+  <a *ngFor="let recent of recents | async" [routerLink]="['/reviews', recent.beerid, recent.reviewerid]">
     <div>
-      <h2>{{ feature.beer }}</h2>
-      <h3>{{ feature.reviewer }}</h3>
-      <div>{{ feature.tagline }}</div>
+      <h2>{{ recent.beer }}</h2>
     </div>
   </a>
 </div>
