@@ -35,13 +35,13 @@
             </div>
             <div class="form-group">
                 <label class="center-block" for="tagline">Tag Line</label>
-                <textarea class="form-control" rows="3" id="tagline" name="tagline" required maxlength="255" [(ngModel)]="reviewModel.tagline" #tagline="ngModel"></textarea>
-                <div [hidden]="tagline.valid || tagline.pristine" class="alert alert-danger">Tag Line is required</div>
+                <textarea class="form-control" rows="3" id="tagline" name="tagline" required minlength="20" maxlength="255" [(ngModel)]="reviewModel.tagline" #tagline="ngModel"></textarea>
+                <div [hidden]="tagline.valid || tagline.pristine" class="alert alert-danger">Tag Line is required (minlength 20, maxlength 255)</div>
             </div>
             <div class="form-group">
                 <label class="center-block" for="review">Review</label>
-                <textarea class="form-control" rows="10" id="review" name="review" required maxlength="1000" [(ngModel)]="reviewModel.review" #review="ngModel"></textarea>
-                <div [hidden]="review.valid || review.pristine" class="alert alert-danger">Review is required</div>
+                <textarea class="form-control" rows="10" id="review" name="review" required minlength="100" maxlength="1000" [(ngModel)]="reviewModel.review" #review="ngModel"></textarea>
+                <div [hidden]="review.valid || review.pristine" class="alert alert-danger">Review is required (minlength 100, maxlength 1000)</div>
             </div>
 
             <button type="submit" class="btn btn-success" [disabled]="!reviewForm.form.valid">Submit</button>

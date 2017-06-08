@@ -28,6 +28,15 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
     this.types = this.firebaseService.getTypes();
   }
 
+  onSubmit() {
+    this.submitted = true;
+  }
+
+  onVerified() {
+    this.firebaseService.addBeer(this.beerModel);
+    this.verified = true;
+  }
+
   ngAfterViewChecked() {
     this.formChanged();
   }
@@ -58,29 +67,22 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
     }
   }
 
-  onSubmit() {
-    this.submitted = true;
-  }
-
-  onVerified() {
-    this.verified = true;
-    this.firebaseService.addBeer(this.beerModel);
-  }
-
   formErrors = {
     'name': '',
-    'beerid': ''
+    'beerid': '',
   };
 
   validationMessages = {
     'name': {
       'required': 'Name is required.',
       'minlength': 'Name must be at least 4 characters long.',
-      'maxlength': 'Name cannot be more than 40 characters long.'
+      'maxlength': 'Name cannot be more than 40 characters long.',
+      'pattern' : 'Name must be alphanumeric with only spaces between words.'
     },
     'beerid': {
       'required': 'beerid is required.',
-      'maxlength': 'beerid cannot be more than 15 characters long.'
+      'maxlength': 'beerid cannot be more than 15 characters long.',
+      'pattern': 'beerid can contain only letters and numbers.'
     }
   };
 }

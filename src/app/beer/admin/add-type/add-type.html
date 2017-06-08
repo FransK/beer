@@ -4,8 +4,8 @@
         <form (ngSubmit)="onSubmit()" #typeForm="ngForm">
             <div class="form-group">
                 <label class="center-block" for="inputType">Type</label>
-                <input type="text" class="form-control" id="inputType" name="inputType" required maxlength="20" [(ngModel)]="type" #inputType="ngModel">
-                <div [hidden]="inputType.valid || inputType.pristine" class="alert alert-danger">Type is required</div>
+                <input type="text" class="form-control" id="inputType" name="inputType" required pattern="^[a-zA-Z]*$" maxlength="20" [(ngModel)]="type" #inputType="ngModel">
+                <div [hidden]="inputType.valid || inputType.pristine" class="alert alert-danger">Type is required (only letters, maxlength 20)</div>
             </div>
 
             <button type="submit" class="btn btn-success" [disabled]="!typeForm.form.valid">Submit</button>

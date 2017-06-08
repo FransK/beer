@@ -4,12 +4,12 @@
         <form (ngSubmit)="onSubmit()" #beerForm="ngForm">
             <div class="form-group">
                 <label class="center-block" for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required minlength="4" maxlength="40" [(ngModel)]="beerModel.name" #name="ngModel">
+                <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z]+(\s[A-Za-z]+)*?" minlength="4" maxlength="40" [(ngModel)]="beerModel.name" #name="ngModel">
                 <div *ngIf="formErrors.name" class="alert alert-danger">{{ formErrors.name }}</div>
             </div>
             <div class="form-group">
                 <label for="beerid">Beer ID</label>
-                <input type="text" class="form-control" id="beerid" name="beerid" required maxlength="15" [(ngModel)]="beerModel.beerid" #beerid="ngModel">
+                <input type="text" class="form-control" id="beerid" name="beerid" required pattern="^[a-zA-Z0-9]*$" maxlength="15" [(ngModel)]="beerModel.beerid" #beerid="ngModel">
                 <div *ngIf="formErrors.beerid" class="alert alert-danger">{{ formErrors.beerid }}</div>
             </div>
             <div class="form-group">

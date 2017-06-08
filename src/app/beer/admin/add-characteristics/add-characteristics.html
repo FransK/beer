@@ -4,8 +4,8 @@
         <form (ngSubmit)="onSubmit()" #characteristicForm="ngForm">
             <div class="form-group">
                 <label class="center-block" for="char">Characteristic</label>
-                <input type="text" class="form-control" id="char" name="char" required maxlength="15" [(ngModel)]="characteristic" #char="ngModel">
-                <div [hidden]="char.valid || char.pristine" class="alert alert-danger">Characteristic is required</div>
+                <input type="text" class="form-control" id="char" name="char" required pattern="^[a-zA-Z]*$" maxlength="15" [(ngModel)]="characteristic" #char="ngModel">
+                <div [hidden]="char.valid || char.pristine" class="alert alert-danger">Characteristic is required (letters only, maxlength 15)</div>
             </div>
 
             <button type="submit" class="btn btn-success" [disabled]="!characteristicForm.form.valid">Submit</button>
