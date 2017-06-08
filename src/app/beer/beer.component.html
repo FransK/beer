@@ -9,7 +9,7 @@
             </button>
             <a class="navbar-brand" href="#">Brew Review</a>
         </div>
-        <div class="collapse navbar-collapse" id="myNavbar">
+        <div class="collapse navbar-collapse" id="myNavbar" [ngbCollapse]="navbarCollapsed">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a [routerLink]="['/main']">Home</a></li>
             </ul>

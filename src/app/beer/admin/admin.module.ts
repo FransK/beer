@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
+// Bootstrap
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { AdminComponent } from './admin.component';
 import { AddBeerComponent } from './add-beer/add-beer.component';
 import { AddBreweryComponent } from './add-brewery/add-brewery.component';
@@ -19,6 +22,7 @@ import { ToolsModule } from '../../tools/tools.module';
     imports: [
         CommonModule,
         FormsModule,
+        NgbModule,
         ToolsModule,
         AdminRoutingModule
     ],
