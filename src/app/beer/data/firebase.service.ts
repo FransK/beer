@@ -208,7 +208,7 @@ export class FirebaseService {
       reviewer: review.reviewer,
       reviewerid: review.reviewerid,
       tagline: review.tagline,
-      timestamp: review.timestamp
+      timestamp: (-1 * review.timestamp)
     }
 
     recents.push(newReview);
