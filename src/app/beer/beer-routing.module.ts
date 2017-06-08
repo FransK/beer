@@ -3,9 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { BeerComponent } from './beer.component';
 import { MainComponent } from './beer-main/main.component';
+import { FeaturesComponent } from './beer-features/features.component';
+import { ReviewComponent } from './beer-review/review.component';
 import { AdminComponent } from './admin/admin.component';
-import { FeaturesComponent } from './features/features.component';
-import { ReviewComponent } from './review/review.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [

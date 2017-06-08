@@ -16,9 +16,9 @@ import { BeerComponent } from './beer.component';
 import { MainComponent } from './beer-main/main.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerThumbComponent } from './beer-thumb/beer-thumb.component';
-import { FeaturesComponent } from './features/features.component';
-import { RecentsComponent } from "./recents/recents.component";
-import { ReviewComponent } from './review/review.component';
+import { FeaturesComponent } from './beer-features/features.component';
+import { RecentsComponent } from "./beer-recents/recents.component";
+import { ReviewComponent } from './beer-review/review.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
