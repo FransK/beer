@@ -1,0 +1,17 @@
+#top-header {
+    position: relative;
+    top: -60px;
+    z-index: 500;
+    opacity: 0.95;
+}
+
+.jumbotron {
+    background-color: #be7513;
+    color: #3d281c;
+    margin-top:30px;
+}
+
+.jumbotron.fourwindsnect {
+    background-image:url('/assets/nectarous.JPG');
+    background-size: cover;
+}

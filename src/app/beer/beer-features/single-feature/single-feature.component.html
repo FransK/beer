@@ -1,0 +1,17 @@
+<div *ngIf="review" [ngClass]="(review.beerid == 'fourwindsnect')?'jumbotron fourwindsnect':'jumbotron'">
+    <div class="row" id="top-header">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-4 well">{{ review.reviewer }}</div>
+        <div class="col-xs-4"></div>
+    </div>
+    <div class="row">
+        <h3>
+            <div class="col-sm-8"><span class="bg-warning">{{ review.beer }}</span></div>
+            <div class="col-sm-4"></div>
+        </h3>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12"><span class="bg-warning">{{ review.tagline }}</span></div>
+    </div>
+</div>
