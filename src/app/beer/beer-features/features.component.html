@@ -1,4 +1,5 @@
 <h2>Featured Reviews</h2>
+<hr>
 <div class="row">
   <a *ngFor="let feature of features | async" [routerLink]="['/reviews', feature.beerid, feature.reviewerid]">
     <div class="col-sm-6">
