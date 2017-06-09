@@ -1,48 +1,46 @@
-<div class="container">
-    <div [hidden]="submitted">
-        <h3>Add Reviewer</h3>
-        <form (ngSubmit)="onSubmit()" #reviewerForm="ngForm">
-            <div class="form-group">
-                <label class="center-block" for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z]+(\s[A-Za-z]+)?" maxlength="40" [(ngModel)]="reviewerModel.name" #name="ngModel">
-                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required (letters and spaces OK, maxlength 40)</div>
-            </div>
-            <div class="form-group">
-                <label for="reviewerid">Reviewer ID</label>
-                <input type="text" class="form-control" id="reviewerid" name="reviewerid" required pattern="^[a-zA-Z0-9]*$" maxlength="20" [(ngModel)]="reviewerModel.reviewerid" #reviewerid="ngModel">
-                <div [hidden]="reviewerid.valid || reviewerid.pristine" class="alert alert-danger">Reviewer ID is required (no special characters, maxlength 20)</div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" class="form-control" id="email" name="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" [(ngModel)]="reviewerModel.email" #email="ngModel">
-                <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is required and format should be <i>john@doe.com</i></div>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required minlength="8" validateEqual="confirmPassword" reverse="true" [(ngModel)]="reviewerModel.password" #password="ngModel">
-                <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password is required (minlength 8)</div>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Retype Password</label>
-                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required validateEqual="password" reverse="false" [(ngModel)]="reviewerModel.confirmPassword" #confirmPassword="ngModel">
-                <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">Password mismatch</div>
-            </div>
-
-            <button type="submit" class="btn btn-success" [disabled]="!reviewerForm.form.valid">Submit</button>
-        </form>
-    </div>
-
-    <div [hidden]="!submitted">
-        <h2>You submitted the following:</h2>
-        <div class="row">
-            <div class="col-xs-3">Name</div>
-            <div class="col-xs-9  pull-left">{{ reviewerModel.name }}</div>
+<div [hidden]="submitted">
+    <h3>Add Reviewer</h3>
+    <form (ngSubmit)="onSubmit()" #reviewerForm="ngForm">
+        <div class="form-group">
+            <label class="center-block" for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z]+(\s[A-Za-z]+)?" maxlength="40" [(ngModel)]="reviewerModel.name" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required (letters and spaces OK, maxlength 40)</div>
         </div>
-        <div class="row">
-            <div class="col-xs-3">Reviewer ID</div>
-            <div class="col-xs-9  pull-left">{{ reviewerModel.reviewerid }}</div>
+        <div class="form-group">
+            <label for="reviewerid">Reviewer ID</label>
+            <input type="text" class="form-control" id="reviewerid" name="reviewerid" required pattern="^[a-zA-Z0-9]*$" maxlength="20" [(ngModel)]="reviewerModel.reviewerid" #reviewerid="ngModel">
+            <div [hidden]="reviewerid.valid || reviewerid.pristine" class="alert alert-danger">Reviewer ID is required (no special characters, maxlength 20)</div>
         </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false">Submit Another</button>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" required pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" [(ngModel)]="reviewerModel.email" #email="ngModel">
+            <div [hidden]="email.valid || email.pristine" class="alert alert-danger">Email is required and format should be <i>john@doe.com</i></div>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required minlength="8" validateEqual="confirmPassword" reverse="true" [(ngModel)]="reviewerModel.password" #password="ngModel">
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">Password is required (minlength 8)</div>
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Retype Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required validateEqual="password" reverse="false" [(ngModel)]="reviewerModel.confirmPassword" #confirmPassword="ngModel">
+            <div [hidden]="confirmPassword.valid || confirmPassword.pristine" class="alert alert-danger">Password mismatch</div>
+        </div>
+
+        <button type="submit" class="btn btn-success" [disabled]="!reviewerForm.form.valid">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+        <div class="col-xs-3">Name</div>
+        <div class="col-xs-9  pull-left">{{ reviewerModel.name }}</div>
     </div>
+    <div class="row">
+        <div class="col-xs-3">Reviewer ID</div>
+        <div class="col-xs-9  pull-left">{{ reviewerModel.reviewerid }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Submit Another</button>
 </div>

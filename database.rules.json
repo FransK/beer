@@ -5,7 +5,7 @@
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true",
       "$beerid": {
           ".write": "true",
-          ".validate": "!data.exists()"
+          ".validate": "$beerid === $beerid.toLowerCase() && !data.exists()"
       }
     },
     "breweries": {
@@ -13,13 +13,14 @@
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true",
       "$breweryid": {
           ".write": "true",
-          ".validate": "!data.exists()"
+          ".validate": "$breweryid === $breweryid.toLowerCase() && !data.exists()"
       }
     },
     "characteristics": {
       ".read": "true",
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true",
       "$characterid": {
+          ".validate": "$characterid === $characterid.toLowerCase()",
           "$beerid": {
               ".validate": "!data.exists()"
           }
@@ -47,6 +48,7 @@
       ".read": "true",
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true",
       "$typeid": {
+          ".validate": "$typeid === $typeid.toLowerCase()",
           "$beerid": {
               ".validate": "!data.exists()"
           }

@@ -12,9 +12,11 @@ import { FirebaseService } from '../../data/firebase.service';
   templateUrl: './add-review.html'
 })
 export class AddReviewComponent implements OnInit {
+  public addBeerCollapsed = true;
+
   submitted = false;
   verified = false;
-  reviewModel = new Review('', '', '', '', 0, '', '', 0);
+  reviewModel = new Review('', '', '', '', null, '', '', 0);
   beers: FirebaseListObservable<any>;
   currentUser: Observable<firebase.User>;
   currentReviewer: FirebaseObjectObservable<any>;

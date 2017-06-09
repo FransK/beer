@@ -1,14 +1,12 @@
-<div class="container-fluid">
-  <h2>Featured Reviews</h2>
-  <a *ngFor="let feature of features | async" [routerLink]="['/reviews', feature.beerid, feature.reviewerid]">
-    <div class="row">
-      <h3>
-        <div class="col-sm-8">{{ feature.beer }}</div>
-        <div class="col-sm-4"><small>As reviewed by: {{ feature.reviewer }}</small></div>
-      </h3>
-    </div>
-    <div class="row">
-      <div class="col-sm-12">{{ feature.tagline }}</div>
-    </div>
-  </a>
-</div>
+<h2>Featured Reviews</h2>
+<a *ngFor="let feature of features | async" [routerLink]="['/reviews', feature.beerid, feature.reviewerid]">
+  <div class="row">
+    <h3>
+      <div class="col-sm-8">{{ feature.beer }}</div>
+      <div class="col-sm-4"><small>As reviewed by: {{ feature.reviewer }}</small></div>
+    </h3>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">{{ feature.tagline }}</div>
+  </div>
+</a>

@@ -43,7 +43,11 @@ export class FirebaseService {
   }
 
   getCharacteristics() : FirebaseListObservable<any> {
-    return this.db.list('/characteristics');
+    return this.db.list('/characteristics', {
+      query: {
+        orderByKey: true
+      }
+    });
   }
 
   getCurrentReviewer(userid: string) : FirebaseObjectObservable<any> {

@@ -13,6 +13,10 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
   beerForm: NgForm;
   @ViewChild('beerForm') currentForm: NgForm;
 
+  public addBreweryCollapsed = true;
+  public addCharacteristicCollapsed = true;
+  public addTypeCollapsed = true;
+
   submitted = false;
   verified = false;
   beerModel = new Beer('', '', {}, '', '');
@@ -82,7 +86,7 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
     'beerid': {
       'required': 'beerid is required.',
       'maxlength': 'beerid cannot be more than 15 characters long.',
-      'pattern': 'beerid can contain only letters and numbers.'
+      'pattern': 'beerid can contain only lowercase letters and numbers.'
     }
   };
 }

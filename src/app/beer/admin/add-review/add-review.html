@@ -1,103 +1,111 @@
-<div class="container">
-    <div [hidden]="submitted">
-        <h3>Add Review</h3>
-        <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
-            <div class="form-group">
-                <label class="control-label" for="reviewerid">Reviewer</label>
-                <div>
-                    <p class="form-control-static">{{(currentUser | async)?.displayName}}</p>
-                </div>
+<div [hidden]="submitted">
+    <h3>Add Review</h3>
+    <form (ngSubmit)="onSubmit()" #reviewForm="ngForm">
+        <div class="form-group">
+            <label class="control-label" for="reviewerid">Reviewer</label>
+            <div>
+                <p class="form-control-static">{{(currentUser | async)?.displayName}}</p>
             </div>
-            <div class="form-group">
-                <label for="beerid">Beer</label>
-                <select class="form-control" id="beerid" name="beerid" required [(ngModel)]="reviewModel.beerid" #beerid="ngModel">
-                    <option *ngFor="let beer of beers | async" [value]="beer.$key">{{beer.name}}</option>
-                </select>
-                <div [hidden]="beerid.valid || beerid.pristine" class="alert alert-danger">Beer is required</div>
-            </div>
-            <div class="form-group">
-                <label for="rating">Rating</label>
-                <select class="form-control" id="rating" name="rating" required [(ngModel)]="reviewModel.rating" #rating="ngModel">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="Editors Choice">Editors Choice</option>
-                    <option value="10 With Distinction">10 With Distinction</option>
-                </select>
-                <div [hidden]="rating.valid || rating.pristine" class="alert alert-danger">Rating is required</div>
-            </div>
-            <div class="form-group">
-                <label class="center-block" for="tagline">Tag Line</label>
-                <textarea class="form-control" rows="3" id="tagline" name="tagline" required minlength="20" maxlength="255" [(ngModel)]="reviewModel.tagline" #tagline="ngModel"></textarea>
-                <div [hidden]="tagline.valid || tagline.pristine" class="alert alert-danger">Tag Line is required (minlength 20, maxlength 255)</div>
-            </div>
-            <div class="form-group">
-                <label class="center-block" for="review">Review</label>
-                <textarea class="form-control" rows="10" id="review" name="review" required minlength="100" maxlength="1000" [(ngModel)]="reviewModel.review" #review="ngModel"></textarea>
-                <div [hidden]="review.valid || review.pristine" class="alert alert-danger">Review is required (minlength 100, maxlength 1000)</div>
-            </div>
+        </div>
+        <div class="form-group">
+            <label for="beerid">Beer</label>
+            <select class="form-control" id="beerid" name="beerid" required [(ngModel)]="reviewModel.beerid" #beerid="ngModel">
+                <option *ngFor="let beer of beers | async" [value]="beer.$key">{{beer.name}}</option>
+            </select>
+            <div [hidden]="beerid.valid || beerid.pristine" class="alert alert-danger">Beer is required</div>
+        </div>
+        <!-- Add Beer -->
+        <p>
+            <button type="button" class="btn btn-outline-primary" (click)="addBeerCollapsed = !addBeerCollapsed" [class.active]="!addBeerCollapsed" [attr.aria-expanded]="!addBeerCollapsed" aria-controls="addBeer">
+                Add Beer
+            </button>
+        </p>
+        <div id="addBeer" class="well" [ngbCollapse]="addBeerCollapsed">
+            <app-add-beer></app-add-beer>
+        </div>
+        <!-- End Add Beer -->
+        <div class="form-group">
+            <label for="rating">Rating</label>
+            <select class="form-control" id="rating" name="rating" required [(ngModel)]="reviewModel.rating" #rating="ngModel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="Editors Choice">Editors Choice</option>
+                <option value="10 With Distinction">10 With Distinction</option>
+            </select>
+            <div [hidden]="rating.valid || rating.pristine" class="alert alert-danger">Rating is required</div>
+        </div>
+        <div class="form-group">
+            <label class="center-block" for="tagline">Tag Line</label>
+            <textarea class="form-control" rows="3" id="tagline" name="tagline" required minlength="20" maxlength="255" [(ngModel)]="reviewModel.tagline" #tagline="ngModel"></textarea>
+            <div [hidden]="tagline.valid || tagline.pristine" class="alert alert-danger">Tag Line is required (minlength 20, maxlength 255)</div>
+        </div>
+        <div class="form-group">
+            <label class="center-block" for="review">Review</label>
+            <textarea class="form-control" rows="10" id="review" name="review" required minlength="100" maxlength="1000" [(ngModel)]="reviewModel.review" #review="ngModel"></textarea>
+            <div [hidden]="review.valid || review.pristine" class="alert alert-danger">Review is required (minlength 100, maxlength 1000)</div>
+        </div>
 
-            <button type="submit" class="btn btn-success" [disabled]="!reviewForm.form.valid">Submit</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-success" [disabled]="!reviewForm.form.valid">Submit</button>
+    </form>
+</div>
 
-    <div [hidden]="!submitted || verified">
-        <h2>You are about to submit the following:</h2>
-        <div class="row">
-            <div class="col-xs-3">Reviewer</div>
-            <div class="col-xs-9  pull-left">{{ reviewModel.reviewer }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Beer</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.beer }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Rating</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.rating }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Tag Line</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.tagline }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Review</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.review }}</div>
-        </div>
-        <br>
-        <button class="btn btn-success" (click)="onVerified()">Submit</button>
-        <button class="btn btn-danger" (click)="submitted=false">Edit</button>
+<div [hidden]="!submitted || verified">
+    <h2>You are about to submit the following:</h2>
+    <div class="row">
+        <div class="col-xs-3">Reviewer</div>
+        <div class="col-xs-9  pull-left">{{ reviewModel.reviewer }}</div>
     </div>
+    <div class="row">
+        <div class="col-xs-3">Beer</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.beer }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Rating</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.rating }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Tag Line</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.tagline }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Review</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.review }}</div>
+    </div>
+    <br>
+    <button class="btn btn-success" (click)="onVerified()">Submit</button>
+    <button class="btn btn-danger" (click)="submitted=false">Edit</button>
+</div>
 
-    <div [hidden]="!verified">
-        <h2>Success! Review added.</h2>
-        <div class="row">
-            <div class="col-xs-3">Reviewer ID</div>
-            <div class="col-xs-9  pull-left">{{ reviewModel.reviewerid }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Beer ID</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.beerid }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Rating</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.rating }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Tag Line</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.tagline }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Review</div>
-            <div class="col-xs-9 pull-left">{{ reviewModel.review }}</div>
-        </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false; verified=false">Add Another</button>
+<div [hidden]="!verified">
+    <h2>Success! Review added.</h2>
+    <div class="row">
+        <div class="col-xs-3">Reviewer ID</div>
+        <div class="col-xs-9  pull-left">{{ reviewModel.reviewerid }}</div>
     </div>
+    <div class="row">
+        <div class="col-xs-3">Beer ID</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.beerid }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Rating</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.rating }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Tag Line</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.tagline }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Review</div>
+        <div class="col-xs-9 pull-left">{{ reviewModel.review }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false; verified=false">Add Another</button>
 </div>

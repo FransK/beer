@@ -1,42 +1,40 @@
-<div class="container">
-    <div [hidden]="submitted">
-        <h3>Add Brewery</h3>
-        <form (ngSubmit)="onSubmit()" #breweryForm="ngForm">
-            <div class="form-group">
-                <label class="center-block" for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z]+(\s[A-Za-z]+)?" minlength="4" maxlength="40" [(ngModel)]="breweryModel.name" #name="ngModel">
-                <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required (minlength 4, maxlength 40)</div>
-            </div>
-            <div class="form-group">
-                <label for="breweryid">Brewery ID</label>
-                <input type="text" class="form-control" id="breweryid" name="breweryid" required pattern="^[a-zA-Z0-9]*$" maxlength="15" [(ngModel)]="breweryModel.breweryid" #breweryid="ngModel">
-                <div [hidden]="breweryid.valid || breweryid.pristine" class="alert alert-danger">Brewery ID is required (no special characters, maxlength 15)</div>
-            </div>
-            <div class="form-group">
-                <label class="center-block" for="location">Location</label>
-                <input type="text" class="form-control" id="location" name="location" required pattern="[A-Za-z,\.]+(\s[A-Za-z,\.]+)?" maxlength="40" [(ngModel)]="breweryModel.location" #location="ngModel">
-                <div [hidden]="location.valid || location.pristine" class="alert alert-danger">Location is required (letters, commas, periods OK, maxlength 40)</div>
-            </div>
+<div [hidden]="submitted">
+    <h3>Add Brewery</h3>
+    <form (ngSubmit)="onSubmit()" #breweryForm="ngForm">
+        <div class="form-group">
+            <label class="center-block" for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required pattern="[A-Za-z]+(\s[A-Za-z]+)?" minlength="4" maxlength="40" [(ngModel)]="breweryModel.name" #name="ngModel">
+            <div [hidden]="name.valid || name.pristine" class="alert alert-danger">Name is required (minlength 4, maxlength 40)</div>
+        </div>
+        <div class="form-group">
+            <label for="breweryid">Brewery ID</label>
+            <input type="text" class="form-control" id="breweryid" name="breweryid" required pattern="^[a-z0-9]*$" maxlength="15" [(ngModel)]="breweryModel.breweryid" #breweryid="ngModel">
+            <div [hidden]="breweryid.valid || breweryid.pristine" class="alert alert-danger">Brewery ID is required (lowercase letters and numbers, maxlength 15)</div>
+        </div>
+        <div class="form-group">
+            <label class="center-block" for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" required pattern="[A-Za-z,\.]+(\s[A-Za-z,\.]+)?" maxlength="40" [(ngModel)]="breweryModel.location" #location="ngModel">
+            <div [hidden]="location.valid || location.pristine" class="alert alert-danger">Location is required (letters, commas, periods OK, maxlength 40)</div>
+        </div>
 
-            <button type="submit" class="btn btn-success" [disabled]="!breweryForm.form.valid">Submit</button>
-        </form>
-    </div>
+        <button type="submit" class="btn btn-success" [disabled]="!breweryForm.form.valid">Submit</button>
+    </form>
+</div>
 
-    <div [hidden]="!submitted">
-        <h2>You submitted the following:</h2>
-        <div class="row">
-            <div class="col-xs-3">Name</div>
-            <div class="col-xs-9  pull-left">{{ breweryModel.name }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Brewery ID</div>
-            <div class="col-xs-9  pull-left">{{ breweryModel.breweryid }}</div>
-        </div>
-        <div class="row">
-            <div class="col-xs-3">Location</div>
-            <div class="col-xs-9  pull-left">{{ breweryModel.location }}</div>
-        </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false">Submit Another</button>
+<div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+        <div class="col-xs-3">Name</div>
+        <div class="col-xs-9  pull-left">{{ breweryModel.name }}</div>
     </div>
+    <div class="row">
+        <div class="col-xs-3">Brewery ID</div>
+        <div class="col-xs-9  pull-left">{{ breweryModel.breweryid }}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Location</div>
+        <div class="col-xs-9  pull-left">{{ breweryModel.location }}</div>
+    </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Submit Another</button>
 </div>

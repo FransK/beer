@@ -1,24 +1,22 @@
-<div class="container">
-    <div [hidden]="submitted">
-        <h3>Add Characteristic</h3>
-        <form (ngSubmit)="onSubmit()" #characteristicForm="ngForm">
-            <div class="form-group">
-                <label class="center-block" for="char">Characteristic</label>
-                <input type="text" class="form-control" id="char" name="char" required pattern="^[a-zA-Z]*$" maxlength="15" [(ngModel)]="characteristic" #char="ngModel">
-                <div [hidden]="char.valid || char.pristine" class="alert alert-danger">Characteristic is required (letters only, maxlength 15)</div>
-            </div>
-
-            <button type="submit" class="btn btn-success" [disabled]="!characteristicForm.form.valid">Submit</button>
-        </form>
-    </div>
-
-    <div [hidden]="!submitted">
-        <h2>You submitted the following:</h2>
-        <div class="row">
-            <div class="col-xs-3">Characteristic</div>
-            <div class="col-xs-9  pull-left">{{ characteristic }}</div>
+<div [hidden]="submitted">
+    <h3>Add Characteristic</h3>
+    <form (ngSubmit)="onSubmit()" #characteristicForm="ngForm">
+        <div class="form-group">
+            <label class="center-block" for="char">Characteristic</label>
+            <input type="text" class="form-control" id="char" name="char" required pattern="^[a-z]*$" maxlength="15" [(ngModel)]="characteristic" #char="ngModel">
+            <div [hidden]="char.valid || char.pristine" class="alert alert-danger">Characteristic is required (lowercase only, maxlength 15)</div>
         </div>
-        <br>
-        <button class="btn btn-primary" (click)="submitted=false">Submit Another</button>
+
+        <button type="submit" class="btn btn-success" [disabled]="!characteristicForm.form.valid">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h2>You submitted the following:</h2>
+    <div class="row">
+        <div class="col-xs-3">Characteristic</div>
+        <div class="col-xs-9  pull-left">{{ characteristic }}</div>
     </div>
+    <br>
+    <button class="btn btn-primary" (click)="submitted=false">Submit Another</button>
 </div>
