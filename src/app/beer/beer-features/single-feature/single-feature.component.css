@@ -7,6 +7,8 @@
 
 .jumbotron {
     background-color: #be7513;
+    background-image:url('/assets/feature-default.JPG');
+    background-size: cover;
     color: #3d281c;
     margin-top:30px;
 }
