@@ -30,6 +30,10 @@ div {
   text-align:center;
 }
 
+.navbar-brand {
+  font-family: 'Lobster', cursive;
+}
+
 .navbar li.dropdown.show > a {
   color: #fff;
   background-color: #080808;
