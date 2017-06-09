@@ -1,7 +1,7 @@
 <div *ngIf="review" [ngClass]="(review.beerid == 'fourwindsnect')?'jumbotron fourwindsnect':'jumbotron'" [@animHover]="hover" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
     <div class="row" id="top-header">
         <div class="col-sm-3 col-xs-1"></div>
-        <div class="col-sm-6 col-xs-10 text-center well">{{ review.reviewer }}</div>
+        <div class="col-sm-6 col-xs-10 text-center well"><span>{{ review.reviewer }}</span></div>
         <div class="col-sm-3 col-xs-1"></div>
     </div>
     <div class="row">
