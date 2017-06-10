@@ -26,6 +26,10 @@
       ".read": "true",
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
+    "pricing": {
+      ".read": "true",
+      ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
+    },
     "recents": {
       ".indexOn": "timestamp",
       ".read": "true",
