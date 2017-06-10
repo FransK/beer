@@ -45,6 +45,12 @@
         </div>
         <!-- End Add Characteristic -->
         <div class="form-group">
+            <label class="center-block" for="character">Pricing</label>
+            <div name="pricing" [(ngModel)]="beerModel.pricing" ngbRadioGroup required>
+                <label *ngFor="let price of pricing | async" class="btn btn-default text-capitalize"><input type="radio" id="price" name="price" [value]="price.$key">{{price.$key}}</label>
+            </div>
+        </div>
+        <div class="form-group">
             <label for="type">Type</label>
             <select class="form-control text-capitalize" id="type" name="type" required [(ngModel)]="beerModel.type" #type="ngModel">
                 <option *ngFor="let type of types | async" [value]="type.$key">{{type.$key}}</option>
@@ -89,7 +95,7 @@
         <div class="col-xs-9 pull-left">{{ beerModel.type }}</div>
     </div>
     <br>
-    <button class="btn btn-success" (click)="onVerified()">Submit</button>
+    <button class="btn btn-success" (click)="onBeerVerified()">Submit</button>
     <button class="btn btn-danger" (click)="submitted=false">Edit</button>
 </div>
 

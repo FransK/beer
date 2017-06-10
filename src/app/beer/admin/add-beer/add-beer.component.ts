@@ -19,9 +19,10 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
 
   submitted = false;
   verified = false;
-  beerModel = new Beer('', '', {}, '', '');
+  beerModel = new Beer('', '', {}, '', '', '');
   breweries: FirebaseListObservable<any>;
   characteristics: FirebaseListObservable<any>;
+  pricing: FirebaseListObservable<any>;
   types: FirebaseListObservable<any>;
 
   constructor(private firebaseService: FirebaseService) { }
@@ -29,6 +30,7 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
   ngOnInit() {
     this.breweries = this.firebaseService.getBreweries();
     this.characteristics = this.firebaseService.getCharacteristics();
+    this.pricing = this.firebaseService.getPricing();
     this.types = this.firebaseService.getTypes();
   }
 
@@ -36,7 +38,7 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
     this.submitted = true;
   }
 
-  onVerified() {
+  onBeerVerified() {
     this.firebaseService.addBeer(this.beerModel);
     this.verified = true;
   }

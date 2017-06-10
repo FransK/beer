@@ -1,9 +1,23 @@
-<h2>The Review</h2>
-<div *ngIf="review">
-    <h2>{{review.ranking}}/10!</h2>
-    <div><label>tagline: </label>{{review.tagline}}</div>
-    <div>
-        <label>review: </label>
-        {{review.review}}
+<div *ngIf="review" class="jumbotron entire-review">
+    <div class="row">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-9">
+            <h2><label class="bg-warning">{{review.tagline}}</label></h2>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-2">
+            <h2><label class="bg-warning">{{review.ranking}}/10!</label></h2>
+        </div>
+        <div class="col-xs-9"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-1"></div>
+        <div class="col-xs-10">
+            <label class="bg-warning" style="white-space:pre-line;">{{review.review}}</label>
+        </div>
+        <div class="col-xs-1"></div>
     </div>
 </div>

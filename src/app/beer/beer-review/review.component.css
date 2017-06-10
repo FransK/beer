@@ -1,0 +1,7 @@
+div.entire-review {
+    background: url('/assets/review-default.JPG') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}

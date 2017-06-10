@@ -35,7 +35,11 @@ export class FirebaseService {
   }
 
   getBeers() : FirebaseListObservable<any> {
-    return this.db.list('/beers');
+    return this.db.list('/beers', {
+      query: {
+        orderByChild: 'name'
+      }
+    });
   }
 
   getBreweries() : FirebaseListObservable<any> {
@@ -64,6 +68,10 @@ export class FirebaseService {
         orderByChild: 'reviewer'
       }
     });
+  }
+
+  getPricing() : FirebaseListObservable<any> {
+    return this.db.list('/pricing');
   }
 
   getNRecentReviews(n: number) : FirebaseListObservable<any> {
