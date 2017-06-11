@@ -87,7 +87,7 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
     },
     'beerid': {
       'required': 'beerid is required.',
-      'maxlength': 'beerid cannot be more than 15 characters long.',
+      'maxlength': 'beerid cannot be more than 30 characters long.',
       'pattern': 'beerid can contain only lowercase letters and numbers.'
     }
   };

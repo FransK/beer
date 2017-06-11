@@ -3,8 +3,8 @@
     <form (ngSubmit)="onSubmit()" #typeForm="ngForm">
         <div class="form-group">
             <label class="center-block" for="inputType">Type</label>
-            <input type="text" class="form-control" id="inputType" name="inputType" required pattern="^[a-z]*$" maxlength="20" [(ngModel)]="type" #inputType="ngModel">
-            <div [hidden]="inputType.valid || inputType.pristine" class="alert alert-danger">Type is required (only lowercase letters, maxlength 20)</div>
+            <input type="text" class="form-control" id="inputType" name="inputType" required pattern="^[a-z]*$" maxlength="30" [(ngModel)]="type" #inputType="ngModel">
+            <div [hidden]="inputType.valid || inputType.pristine" class="alert alert-danger">Type is required (only lowercase letters, maxlength 30)</div>
         </div>
 
         <button type="submit" class="btn btn-success" [disabled]="!typeForm.form.valid">Submit</button>
