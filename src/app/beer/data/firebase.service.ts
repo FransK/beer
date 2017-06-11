@@ -111,6 +111,7 @@ export class FirebaseService {
       brewery: beer.breweryid,
       characteristics: beer.characteristics,
       name: beer.name,
+      pricing: beer.pricing,
       type: beer.type
     };
     updatedBeerData[`breweries/${beer.breweryid}/beers/${beer.beerid}`] = true;
