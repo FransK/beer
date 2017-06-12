@@ -36,6 +36,7 @@
       ".write": "root.child('reviewers/'+auth.uid).exists() && root.child('reviewers/'+auth.uid).child('verified').val() === true"
     },
     "reviewers": {
+      ".indexOn": "reviewerid",
       ".read": "true",
       ".write": "true"
     },

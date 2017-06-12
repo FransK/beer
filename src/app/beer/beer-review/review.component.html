@@ -1,23 +1,36 @@
 <div *ngIf="review" class="jumbotron entire-review">
+    <div class="row" *ngFor="let reviewer of reviewers | async">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-8 bg-warning">
+            <h2><label>{{ (beer | async)?.name }} ({{ (brewery | async)?.name }}: {{ (brewery | async)?.location }})<br><small>Reviewed by {{reviewer.name }}</small></label></h2>
+        </div>
+        <div class="col-sm-2">
+            <h2><label class="bg-warning">Score: {{ (review | async)?.ranking }}/10!</label></h2>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
     <div class="row">
         <div class="col-xs-2"></div>
         <div class="col-xs-9">
-            <h2><label class="bg-warning">{{review.tagline}}</label></h2>
+            <h2><label class="bg-warning">{{ (review | async)?.tagline }}</label></h2>
         </div>
-        <div class="col-xs-1"></div>
+        <div class="col-xs-2"></div>
     </div>
     <div class="row">
         <div class="col-xs-1"></div>
-        <div class="col-xs-2">
-            <h2><label class="bg-warning">{{review.ranking}}/10!</label></h2>
+        <div class="col-xs-10 bg-warning">
+            <label style="white-space:pre-line;">{{ (review | async)?.review }}</label>
         </div>
-        <div class="col-xs-9"></div>
+        <div class="col-xs-1"></div>
     </div>
+    <p>
     <div class="row">
-        <div class="col-xs-1"></div>
-        <div class="col-xs-10">
-            <label class="bg-warning" style="white-space:pre-line;">{{review.review}}</label>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-2 bg-warning">
+            <label>Characteristics:</label>
         </div>
-        <div class="col-xs-1"></div>
-    </div>
+        <div class="col-sm-8">
+            <button class="btn btn-basic bg-warning" style="margin-right:2px" *ngFor="let character of characteristics | async"><label>{{ character.$key }}</label></button>
+        </div>
+        <div class="col-sm-1"></div>
 </div>

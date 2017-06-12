@@ -42,6 +42,10 @@ export class FirebaseService {
     });
   }
 
+  getBreweryById(breweryid: string) : FirebaseObjectObservable<any> {
+    return this.db.object(`/breweries/${breweryid}`);
+  }
+
   getBreweries() : FirebaseListObservable<any> {
     return this.db.list('/breweries');
   }
@@ -52,6 +56,10 @@ export class FirebaseService {
         orderByKey: true
       }
     });
+  }
+
+  getCharacteristicsByBeerId(beerid: string) : FirebaseListObservable<any> {
+    return this.db.list(`/beers/${beerid}/characteristics`);
   }
 
   getCurrentReviewer(userid: string) : FirebaseObjectObservable<any> {
@@ -85,6 +93,15 @@ export class FirebaseService {
 
   getReview(beerid: string, reviewerid: string) : FirebaseObjectObservable<any> {
     return this.db.object(`/reviews/${beerid}/${reviewerid}`);
+  }
+
+  getReviewerById(reviewerid: string) : FirebaseListObservable<any> {
+    return this.db.list('/reviewers', {
+      query: {
+        orderByChild: 'reviewerid',
+        equalTo: reviewerid
+      }
+    });
   }
 
   getReviewers() : FirebaseListObservable<any> {
