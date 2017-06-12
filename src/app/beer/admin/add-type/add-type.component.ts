@@ -7,14 +7,17 @@ import { FirebaseService } from '../../data/firebase.service';
   templateUrl: './add-type.html'
 })
 export class AddTypeComponent {
+  public errorMessage: string;
+  
   submitted = false;
   type: string;
 
   constructor(private firebaseService: FirebaseService) { }
 
   onSubmit() {
-    this.submitted = true;
-    this.firebaseService.addType(this.type);
+    this.firebaseService.addType(this.type)
+      .then(() => this.submitted = true)
+      .catch(error => this.errorMessage = error.message);
   }
 
 }

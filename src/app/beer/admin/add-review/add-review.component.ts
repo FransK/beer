@@ -13,6 +13,7 @@ import { FirebaseService } from '../../data/firebase.service';
 })
 export class AddReviewComponent implements OnInit {
   public addBeerCollapsed = true;
+  public errorMessage: string;
 
   submitted = false;
   verified = false;
@@ -48,7 +49,8 @@ export class AddReviewComponent implements OnInit {
   }
 
   onVerified() {
-    this.verified = true;
-    this.firebaseService.addReview(this.reviewModel);
+    this.firebaseService.addReview(this.reviewModel)
+      .then(() => this.verified = true)
+      .catch(error => this.errorMessage = error.message);
   }
 }

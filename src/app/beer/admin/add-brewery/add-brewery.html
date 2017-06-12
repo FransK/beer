@@ -1,3 +1,7 @@
+<div [hidden]="!errorMessage" class="alert alert-danger">
+    There was an error submitting your brewery: {{errorMessage}}. Please edit and try again.
+</div>
+
 <div [hidden]="submitted">
     <h3>Add Brewery</h3>
     <form (ngSubmit)="onSubmit()" #breweryForm="ngForm">

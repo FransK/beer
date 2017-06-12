@@ -17,8 +17,10 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
   public addCharacteristicCollapsed = true;
   public addTypeCollapsed = true;
 
+  public errorMessage: string;
   submitted = false;
   verified = false;
+  
   beerModel = new Beer('', '', {}, '', '', '');
   breweries: FirebaseListObservable<any>;
   characteristics: FirebaseListObservable<any>;
@@ -39,8 +41,14 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
   }
 
   onBeerVerified() {
-    this.firebaseService.addBeer(this.beerModel);
-    this.verified = true;
+    this.firebaseService.addBeer(this.beerModel)
+        .then(() => this.verified = true)
+        .catch(error => {this.errorMessage = error.message});
+  }
+
+  onEditBeer() {
+    this.submitted = false;
+    this.errorMessage = '';
   }
 
   ngAfterViewChecked() {

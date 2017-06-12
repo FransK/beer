@@ -1,3 +1,7 @@
+<div [hidden]="!errorMessage" class="alert alert-danger">
+    There was an error submitting your characteristic: {{errorMessage}}. Please edit and try again.
+</div>
+
 <div [hidden]="submitted">
     <h3>Add Characteristic</h3>
     <form (ngSubmit)="onSubmit()" #characteristicForm="ngForm">

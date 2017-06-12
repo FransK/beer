@@ -7,14 +7,17 @@ import { FirebaseService } from '../../data/firebase.service';
   templateUrl: './add-characteristics.html'
 })
 export class AddCharacteristicsComponent {
+  public errorMessage: string;
+
   submitted = false;
   characteristic: string;
 
   constructor(private firebaseService: FirebaseService) { }
 
   onSubmit() {
-    this.submitted = true;
-    this.firebaseService.addCharacteristic(this.characteristic);
+    this.firebaseService.addCharacteristic(this.characteristic)
+      .then(() => this.submitted = true)
+      .catch(error => this.errorMessage = error.message);
   }
 
 }

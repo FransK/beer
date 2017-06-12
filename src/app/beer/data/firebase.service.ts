@@ -96,16 +96,7 @@ export class FirebaseService {
   }
 
   // Setters
-  addBeer(beer: Beer) {
-    const currentBeer = this.db.object(`/beers/${beer.beerid}`);
-    currentBeer.take(1).subscribe(snapshot => {
-      if (!snapshot.$exists()) {
-        this.addBeerCallback(currentBeer, beer);
-      }
-    });
-  }
-
-  addBeerCallback(firebaseObject: FirebaseObjectObservable<any>, beer: Beer) {
+  addBeer(beer: Beer): firebase.Promise<void> {
     var updatedBeerData = {};
     updatedBeerData[`beers/${beer.beerid}`] = {
       brewery: beer.breweryid,
@@ -120,55 +111,37 @@ export class FirebaseService {
       updatedBeerData[`characteristics/${characteristic}/${beer.beerid}`] = true;
     }
 
-    this.db.object('/').update(updatedBeerData);
+    return this.db.object('/').update(updatedBeerData);
   }
 
-  addBrewery(brewery: Brewery) {
-    const currentBrewery = this.db.object(`/breweries/${brewery.breweryid}`);
-    currentBrewery.take(1).subscribe(snapshot => {
-      if (!snapshot.$exists()) {
-        var updatedBrewery = {
-          location: brewery.location,
-          name: brewery.name
-        }
-        currentBrewery.set(updatedBrewery);
-      }
-    });
+  addBrewery(brewery: Brewery): firebase.Promise<void> {
+    var updatedBrewery = {
+      location: brewery.location,
+      name: brewery.name
+    }
+
+    return this.db.object(`/breweries/${brewery.breweryid}`).set(updatedBrewery);
   }
 
-  addCharacteristic(characteristic: string) {
-    const currentChar = this.db.object(`/characteristics/${characteristic}`);
-    currentChar.take(1).subscribe(snapshot => {
-      if (!snapshot.$exists()) {
-        currentChar.set(true);
-      }
-    });
+  addCharacteristic(characteristic: string): firebase.Promise<void> {
+    return this.db.object(`/characteristics/${characteristic}`).set(true);
   }
 
-  addReview(review: Review) {
+  addReview(review: Review): firebase.Promise<void> {
     var user = this.afAuth.auth.currentUser;
     if (user) {
-      const currentReview = this.db.object(`/reviews/${review.beerid}/${review.reviewerid}`);
-      currentReview.take(1).subscribe(snapshot => {
-        if (!snapshot.$exists()) {
-          this.addReviewCallback(review, user);
-        }
-      });
+      var updatedReviewData = {};
+      updatedReviewData[`reviews/${review.beerid}/${review.reviewerid}`] = {
+        ranking: review.rating,
+        review: review.review,
+        tagline: review.tagline,
+        timestamp: review.timestamp
+      };
+      updatedReviewData[`reviewers/${user.uid}/reviews/${review.beerid}`] = true;
+
+      this.createRecent(review);
+      return this.db.object('/').update(updatedReviewData);
     }
-  }
-
-  addReviewCallback(review: Review, user: firebase.User) {
-    var updatedReviewData = {};
-    updatedReviewData[`reviews/${review.beerid}/${review.reviewerid}`] = {
-      ranking: review.rating,
-      review: review.review,
-      tagline: review.tagline,
-      timestamp: review.timestamp
-    };
-    updatedReviewData[`reviewers/${user.uid}/reviews/${review.beerid}`] = true;
-
-    this.db.object('/').update(updatedReviewData);
-    this.createRecent(review);
   }
 
   addReviewer(reviewer: Reviewer) {
@@ -203,13 +176,8 @@ export class FirebaseService {
     });
   }
 
-  addType(type: string) {
-    const currentType = this.db.object(`/types/${type}`);
-    currentType.take(1).subscribe(snapshot => {
-      if (!snapshot.$exists()) {
-        currentType.set(true);
-      }
-    });
+  addType(type: string): firebase.Promise<void> {
+    return this.db.object(`/types/${type}`).set(true);
   }
 
   // Private methods
