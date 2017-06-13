@@ -46,6 +46,7 @@ export class SearchComponent implements OnInit, OnDestroy{
         this.filteredBeers = this.beers.map(beers => {
             let newBeers = this.filterTypes(beers);
             newBeers = this.filterCharacteristics(newBeers);
+            newBeers = this.filterReviewers(newBeers);
             return newBeers;
         });
     }
@@ -55,11 +56,12 @@ export class SearchComponent implements OnInit, OnDestroy{
             // Return the given list if we don't have any characteristics to filter
             return beers;
         } else {
-            // Return only beers which match all given characteristics
-            let searchCharacteristics = Object.keys(this.searchTerms.characteristics)
+            // Return only beers which match ALL given characteristics
+            let searchCharacteristics = Object.keys(this.searchTerms.characteristics);
             searchCharacteristics = searchCharacteristics.filter(char => this.searchTerms.characteristics[char] === true);
+
             return beers.filter(beer => {
-                if (!beer.hasOwnProperty('characteristics')) return false;
+                if (!beer.hasOwnProperty('characteristics')) return false; // safety check so we don't error when grabbing keys
 
                 let beerCharacteristics = Object.keys(beer.characteristics);
                 beerCharacteristics = beerCharacteristics.filter(char => beer.characteristics[char] === true);
@@ -80,7 +82,24 @@ export class SearchComponent implements OnInit, OnDestroy{
             // Return the given list if we don't have any characteristics to filter
             return beers;
         } else {
-        
+            // Return only beers which match ALL give reviewers
+            let searchReviewers = Object.keys(this.searchTerms.reviewers);
+            searchReviewers = searchReviewers.filter(reviewer => this.searchTerms.reviewers[reviewer] === true);
+
+            return beers.filter(beer => {
+                if (!beer.hasOwnProperty('reviewers')) return false; // safety check so we don't error when grabbing keys
+
+                let beerReviewers = Object.keys(beer.reviewers);
+                beerReviewers = beerReviewers.filter(reviewer => beer.reviewers[reviewer] === true);
+                let beerMatch = true;
+                searchReviewers.forEach(reviewer => {
+                    if (beerReviewers.indexOf(reviewer) === -1) {
+                        beerMatch = false;
+                        return;
+                    }
+                });
+                return beerMatch;
+            });
         }
     }
 

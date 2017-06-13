@@ -95,6 +95,10 @@ export class FirebaseService {
     return this.db.object(`/reviews/${beerid}/${reviewerid}`);
   }
 
+  getReviews() : FirebaseListObservable<any> {
+    return this.db.list('/reviews');
+  }
+
   getReviewerById(reviewerid: string) : FirebaseListObservable<any> {
     return this.db.list('/reviewers', {
       query: {
@@ -155,6 +159,7 @@ export class FirebaseService {
         timestamp: review.timestamp
       };
       updatedReviewData[`reviewers/${user.uid}/reviews/${review.beerid}`] = true;
+      updatedReviewData[`beers/${review.beerid}/reviewers/${review.reviewerid}`] = true;
 
       this.createRecent(review);
       return this.db.object('/').update(updatedReviewData);

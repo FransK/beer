@@ -6,5 +6,6 @@ export class Beer {
         public name:string,
         public type:string,
         public pricing:string,
+        public reviewers:{}
     ) {}
 }

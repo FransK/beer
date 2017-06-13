@@ -21,7 +21,7 @@ export class AddBeerComponent implements OnInit, AfterViewChecked {
   submitted = false;
   verified = false;
   
-  beerModel = new Beer('', '', {}, '', '', '');
+  beerModel = new Beer('', '', {}, '', '', '', {});
   breweries: FirebaseListObservable<any>;
   characteristics: FirebaseListObservable<any>;
   pricing: FirebaseListObservable<any>;

@@ -17,7 +17,6 @@
                             <input type="checkbox" [(ngModel)]="searchTerms['characteristics'][character.$key]" (change)="onFilter()"> {{ character.$key }}
                         </label>
                     </div>
-                    <pre>{{ searchTerms['characteristics'] | json }}</pre>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Types">
@@ -27,7 +26,6 @@
                             <input type="checkbox" [(ngModel)]="searchTerms['types'][type.$key]" (change)="onFilter()"> {{ type.$key }}
                         </label>
                     </div>
-                    <pre>{{ searchTerms['types'] | json }}</pre>
                 </ng-template>
             </ngb-tab>
             <ngb-tab title="Reviewers">
@@ -37,7 +35,6 @@
                             <input type="checkbox" [(ngModel)]="searchTerms['reviewers'][reviewer.reviewerid]" (change)="onFilter()"> {{ reviewer.name }}
                         </label>
                     </div>
-                    <pre>{{ searchTerms['reviewers'] | json }}</pre>
                 </ng-template>
             </ngb-tab>
         </ngb-tabset>
@@ -48,7 +45,11 @@
 <div class="search-results">
     <div *ngIf="filteredBeers">
         <div *ngFor="let beer of filteredBeers | async" class="row">
-            <div class="col-xs-12">{{ beer | json }}</div>
+            <div class="col-sm-2">{{ beer.name }}</div>
+            <div class="col-sm-2">{{ beer.brewery }}</div>
+            <div class="col-sm-1">{{ beer.type }}</div>
+            <div class="col-sm-4">{{ beer.characteristics | json }}</div>
+            <div class="col-sm-3">{{ beer.reviewers | json }}</div>
         </div>
     </div>
 </div>
