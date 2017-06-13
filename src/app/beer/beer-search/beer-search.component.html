@@ -1,0 +1,54 @@
+<div class="row">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-5">
+        <h2><label>Let's find you a brew!</label></h2>
+    </div>
+    <div class="col-xs-6"></div>
+</div>
+
+<div class="row filter-terms">
+    <div class="col-xs-1"></div>
+    <div class="col-xs-10">
+        <ngb-tabset class="nav nav-tabs">
+            <ngb-tab title="Characteristics">
+                <ng-template ngbTabContent>
+                    <div class="characteristics-filter" data-toggle="buttons">
+                        <label *ngFor="let character of characteristics | async" class="btn btn-primary" [class.active]="searchTerms['characteristics'][character.$key]">
+                            <input type="checkbox" [(ngModel)]="searchTerms['characteristics'][character.$key]" (change)="onFilter()"> {{ character.$key }}
+                        </label>
+                    </div>
+                    <pre>{{ searchTerms['characteristics'] | json }}</pre>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Types">
+                <ng-template ngbTabContent>
+                    <div class="types-filter" data-toggle="buttons">
+                        <label *ngFor="let type of types | async" class="btn btn-primary" [class.active]="searchTerms['types'][type.$key]">
+                            <input type="checkbox" [(ngModel)]="searchTerms['types'][type.$key]" (change)="onFilter()"> {{ type.$key }}
+                        </label>
+                    </div>
+                    <pre>{{ searchTerms['types'] | json }}</pre>
+                </ng-template>
+            </ngb-tab>
+            <ngb-tab title="Reviewers">
+                <ng-template ngbTabContent>
+                    <div class="reviewers-filter" data-toggle="buttons">
+                        <label *ngFor="let reviewer of reviewers | async" class="btn btn-primary" [class.active]="searchTerms['reviewers'][reviewer.reviewerid]">
+                            <input type="checkbox" [(ngModel)]="searchTerms['reviewers'][reviewer.reviewerid]" (change)="onFilter()"> {{ reviewer.name }}
+                        </label>
+                    </div>
+                    <pre>{{ searchTerms['reviewers'] | json }}</pre>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
+    <div class="col-xs-1"></div>
+</div>
+
+<div class="search-results">
+    <div *ngIf="filteredBeers">
+        <div *ngFor="let beer of filteredBeers | async" class="row">
+            <div class="col-xs-12">{{ beer | json }}</div>
+        </div>
+    </div>
+</div>

@@ -5,6 +5,7 @@ import { BeerComponent } from './beer.component';
 import { MainComponent } from './beer-main/main.component';
 import { FeaturesComponent } from './beer-features/features.component';
 import { ReviewComponent } from './beer-review/review.component';
+import { SearchComponent } from './beer-search/beer-search.component';
 import { AdminComponent } from './admin/admin.component';
 import { LoginComponent } from './login/login.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
           { path: '', redirectTo: '/main', pathMatch: 'full' },
           { path: 'main', component: MainComponent },
           { path: 'reviews/:beerid/:reviewerid', component: ReviewComponent },
+          { path: 'search', component: SearchComponent },
           { path: 'admin', loadChildren: 'app/beer/admin/admin.module#AdminModule' },
           { path: 'login', component: LoginComponent },
         ]

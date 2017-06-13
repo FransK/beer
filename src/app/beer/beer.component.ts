@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase/app';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -13,10 +14,15 @@ import { FirebaseService } from './data/firebase.service';
   ]
 })
 export class BeerComponent implements OnInit {
-  currentReviewer: Observable<firebase.User>;
   public navbarCollapsed = true;
 
-  constructor(private firebaseService: FirebaseService, private afAuth: AngularFireAuth) { }
+  currentReviewer: Observable<firebase.User>;
+  searchTerm: string;
+
+  constructor(
+    private firebaseService: FirebaseService,
+    private afAuth: AngularFireAuth,
+    private router: Router) { }
 
   ngOnInit() {
     this.afAuth.auth.onAuthStateChanged((user) => {
@@ -26,5 +32,9 @@ export class BeerComponent implements OnInit {
 
   onClickLogout() {
     this.firebaseService.logoutUser();
+  }
+
+  onSubmitSearch() {
+    this.router.navigate(['/search', {text: this.searchTerm}]);
   }
 }

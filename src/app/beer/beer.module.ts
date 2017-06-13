@@ -18,8 +18,9 @@ import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerThumbComponent } from './beer-thumb/beer-thumb.component';
 import { FeaturesComponent } from './beer-features/features.component';
 import { SingleFeatureComponent } from './beer-features/single-feature/single-feature.component';
-import { RecentsComponent } from "./beer-recents/recents.component";
+import { RecentsComponent } from './beer-recents/recents.component';
 import { ReviewComponent } from './beer-review/review.component';
+import { SearchComponent } from './beer-search/beer-search.component';
 import { LoginComponent } from './login/login.component';
 
 @NgModule({
@@ -29,7 +30,7 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     NgbModule,
     BeerRoutingModule,
-    AdminModule,
+    AdminModule
   ],
   declarations: [
     BeerComponent,
@@ -40,7 +41,8 @@ import { LoginComponent } from './login/login.component';
     SingleFeatureComponent,
     RecentsComponent,
     ReviewComponent,
-    LoginComponent,
+    SearchComponent,
+    LoginComponent
   ],
   exports: [
     BeerDetailsComponent,

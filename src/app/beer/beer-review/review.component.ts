@@ -4,7 +4,6 @@ import { FirebaseListObservable, FirebaseObjectObservable } from 'angularfire2/d
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/switch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/switchMap';
 
 import { FirebaseService } from '../data/firebase.service';
 

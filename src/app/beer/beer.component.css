@@ -3,16 +3,27 @@ div {
   font-size: 16px;
 }
 
-.wide {
-  width:100%;
-  height:500px;
-  background-image:url('/assets/header.JPG');
-  background-size:cover;
-  padding-top:20px;
+div.component-background {
+    background: url('/assets/review-default.JPG') no-repeat center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
-.wide img {
-  width:100%;
+.footer {
+  background-color: #222;
+  border-top-color: #080808;
+  border-top-style: groove;
+  margin-top:30px;
+  padding-bottom:30px;
+}
+
+.line {
+  padding-top:49px;
+  white-space:no-wrap;
+  overflow:hidden;
+  text-align:center;
 }
 
 .logo {
@@ -24,11 +35,16 @@ div {
   text-align:center;
 }
 
-.line {
-  padding-top:49px;
-  white-space:no-wrap;
-  overflow:hidden;
-  text-align:center;
+.wide {
+  width:100%;
+  height:400px;
+  background-image:url('/assets/header.JPG');
+  background-size:cover;
+  padding-top:20px;
+}
+
+.wide img {
+  width:100%;
 }
 
 .navbar-brand {
