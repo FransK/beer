@@ -8,6 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AdminModule } from './admin/admin.module';
 import { BeerRoutingModule } from './beer-routing.module';
+import { ToolsModule } from '../tools/tools.module';
 
 import { FirebaseService } from './data/firebase.service';
 
@@ -30,7 +31,8 @@ import { LoginComponent } from './login/login.component';
     HttpModule,
     NgbModule,
     BeerRoutingModule,
-    AdminModule
+    AdminModule,
+    ToolsModule
   ],
   declarations: [
     BeerComponent,
