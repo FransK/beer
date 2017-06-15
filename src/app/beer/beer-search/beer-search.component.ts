@@ -120,14 +120,16 @@ export class SearchComponent implements OnInit{
             if (beer.type.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
                 return true;
             }
+            let characterSearch = false;
             this.objectArrayPipe.transform(beer.characteristics, []).forEach(character => {
                 if (character.value) {
                     if (character.key.indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
-                        return true;
+                        characterSearch = true;
+                        return;
                     }
                 }
             });
-            return false;
+            return characterSearch;
         });
     }
 
