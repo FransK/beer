@@ -12,6 +12,7 @@
         <div class="collapse navbar-collapse" id="myNavbar" [ngbCollapse]="navbarCollapsed">
             <ul class="nav navbar-nav">
                 <li routerLinkActive="active"><a [routerLink]="['/main']">Home</a></li>
+                <li routerLinkActive="active"><a [routerLink]="['/search']">Find a Brew</a></li>
             </ul>
             <form class="navbar-form navbar-left" (ngSubmit)="onSubmitSearch()" #searchForm="ngForm">
                 <div class="form-group">

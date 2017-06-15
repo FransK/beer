@@ -27,7 +27,7 @@ export class MyReviewsComponent implements OnInit {
             this.currentReviewer = this.firebaseService.getCurrentReviewer(user.uid);
             this.currentReviewer.take(1).subscribe((reviewer) => {
                 this.reviewerid = reviewer.reviewerid;
-                this.reviews = this.firebaseService.getCurrentUserReviews(user.uid);
+                this.reviews = this.firebaseService.getReviewsByUser(user.uid);
             })
         })
     }

@@ -66,7 +66,7 @@ export class FirebaseService {
     return this.db.object(`/reviewers/${userid}`);
   }
 
-  getCurrentUserReviews(userid: string) : FirebaseListObservable<any> {
+  getReviewsByUser(userid: string) : FirebaseListObservable<any> {
     return this.db.list(`/reviewers/${userid}/reviews`);
   }
   
