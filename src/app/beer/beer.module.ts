@@ -11,6 +11,7 @@ import { BeerRoutingModule } from './beer-routing.module';
 import { ToolsModule } from '../tools/tools.module';
 
 import { FirebaseService } from './data/firebase.service';
+import { ObjectArrayPipe } from '../tools/object-to-array.pipe';
 
 import { BeerComponent } from './beer.component';
 
@@ -51,6 +52,7 @@ import { LoginComponent } from './login/login.component';
   ],
   providers: [
     FirebaseService,
+    ObjectArrayPipe
   ]
 })
 export class BeerModule { }

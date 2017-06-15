@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 import { FirebaseService } from '../data/firebase.service';
+import { ObjectArrayPipe } from '../../tools/object-to-array.pipe';
 import { FirebaseListObservable } from 'angularfire2/database';
 
 @Component({
@@ -29,7 +30,7 @@ export class SearchComponent implements OnInit{
         types: {}
     };
     
-    constructor(private firebaseService: FirebaseService, private location: Location, private route: ActivatedRoute) { }
+    constructor(private firebaseService: FirebaseService, private location: Location, private route: ActivatedRoute, private objectArrayPipe: ObjectArrayPipe) { }
 
     ngOnInit() {
         this.route.queryParams.subscribe(params => this.searchTerms.text = params['text'] || '');
@@ -112,7 +113,22 @@ export class SearchComponent implements OnInit{
     }
 
     filterText(beers) : any {
-        return beers.filter(beer => beer.name.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0);
+        return beers.filter(beer => {
+            if (beer.name.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
+                return true;
+            }
+            if (beer.type.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
+                return true;
+            }
+            this.objectArrayPipe.transform(beer.characteristics, []).forEach(character => {
+                if (character.value) {
+                    if (character.key.indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
+                        return true;
+                    }
+                }
+            });
+            return false;
+        });
     }
 
     filterTypes(beers) : any {

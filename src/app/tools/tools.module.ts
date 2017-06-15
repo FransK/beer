@@ -2,7 +2,7 @@ import { NgModule }     from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EqualValidator } from './equal-validator.directive';
-import { ObjectArrayPipe } from './object-to-arry.pipe';
+import { ObjectArrayPipe } from './object-to-array.pipe';
 
 @NgModule({
   imports: [ CommonModule ],
