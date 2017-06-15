@@ -113,23 +113,32 @@ export class SearchComponent implements OnInit{
     }
 
     filterText(beers) : any {
+        let textTerms = this.searchTerms.text.toLowerCase().split(/\s/g);
         return beers.filter(beer => {
-            if (beer.name.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
-                return true;
-            }
-            if (beer.type.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
-                return true;
-            }
-            let characterSearch = false;
-            this.objectArrayPipe.transform(beer.characteristics, []).forEach(character => {
-                if (character.value) {
-                    if (character.key.indexOf(this.searchTerms.text.toLowerCase()) >= 0) {
-                        characterSearch = true;
+            let textResult = true;
+            textTerms.forEach(textTerm => {
+                if (textResult) {
+                    if (beer.name.toLowerCase().indexOf(textTerm) >= 0) {
                         return;
+                    }
+                    if (beer.type.toLowerCase().indexOf(textTerm) >= 0) {
+                        return;
+                    }
+                    let characterSearch = false;
+                    this.objectArrayPipe.transform(beer.characteristics, []).forEach(character => {
+                        if (character.value) {
+                            if (character.key.indexOf(textTerm) >= 0) {
+                                characterSearch = true;
+                                return;
+                            }
+                        }
+                    });
+                    if (!characterSearch) {
+                        textResult = false;
                     }
                 }
             });
-            return characterSearch;
+            return textResult;
         });
     }
 
