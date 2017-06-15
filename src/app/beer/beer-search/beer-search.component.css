@@ -10,3 +10,12 @@ div.component-background {
     -o-background-size: cover;
     background-size: cover;
 }
+
+.filter-terms {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.search-results {
+  margin-top: 40px;
+}

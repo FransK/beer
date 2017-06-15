@@ -17,7 +17,7 @@ export class BeerComponent implements OnInit {
   public navbarCollapsed = true;
 
   currentReviewer: Observable<firebase.User>;
-  searchTerm: string;
+  searchTerm = '';
 
   constructor(
     private firebaseService: FirebaseService,
@@ -35,6 +35,6 @@ export class BeerComponent implements OnInit {
   }
 
   onSubmitSearch() {
-    this.router.navigate(['/search', {text: this.searchTerm}]);
+      this.router.navigate(['/search'], {queryParams: { 'text': this.searchTerm}});
   }
 }

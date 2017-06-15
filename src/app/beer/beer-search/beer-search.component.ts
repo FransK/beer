@@ -1,4 +1,6 @@
-import { Component, Pipe, PipeTransform, OnInit, OnDestroy } from "@angular/core";
+import { Location } from "@angular/common";
+import { Component, Pipe, PipeTransform, OnInit } from "@angular/core";
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
@@ -12,7 +14,7 @@ import { FirebaseListObservable } from 'angularfire2/database';
         './beer-search.component.css'
     ]
 })
-export class SearchComponent implements OnInit, OnDestroy{
+export class SearchComponent implements OnInit{
     beers: FirebaseListObservable<any>;
     characteristics: FirebaseListObservable<any>;
     reviewers: FirebaseListObservable<any>;
@@ -21,15 +23,17 @@ export class SearchComponent implements OnInit, OnDestroy{
     filteredBeers: Observable<any>;
 
     searchTerms = {
-        text: {},
+        text: '',
         characteristics: {},
         reviewers: {},
         types: {}
     };
     
-    constructor(private firebaseService: FirebaseService) { }
+    constructor(private firebaseService: FirebaseService, private location: Location, private route: ActivatedRoute) { }
 
     ngOnInit() {
+        this.route.queryParams.subscribe(params => this.searchTerms.text = params['text'] || '');
+
         this.beers = this.firebaseService.getBeers();
         this.characteristics = this.firebaseService.getCharacteristics();
         this.reviewers = this.firebaseService.getReviewers();
@@ -38,15 +42,19 @@ export class SearchComponent implements OnInit, OnDestroy{
         this.onFilter();
     }
 
-    ngOnDestroy() {
-        // Unsubscribe here
+    onClearText() {
+        this.searchTerms.text = '';
+        this.onFilter();
     }
 
     onFilter() {
+        this.location.replaceState('search?text=' + this.searchTerms.text);
+
         this.filteredBeers = this.beers.map(beers => {
             let newBeers = this.filterTypes(beers);
             newBeers = this.filterCharacteristics(newBeers);
             newBeers = this.filterReviewers(newBeers);
+            newBeers = this.filterText(newBeers);
             return newBeers;
         });
     }
@@ -101,6 +109,10 @@ export class SearchComponent implements OnInit, OnDestroy{
                 return beerMatch;
             });
         }
+    }
+
+    filterText(beers) : any {
+        return beers.filter(beer => beer.name.toLowerCase().indexOf(this.searchTerms.text.toLowerCase()) >= 0);
     }
 
     filterTypes(beers) : any {
