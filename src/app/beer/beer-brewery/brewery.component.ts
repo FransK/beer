@@ -4,16 +4,16 @@ import { FirebaseObjectObservable } from 'angularfire2/database';
 import { FirebaseService } from '../data/firebase.service';
 
 @Component({
-  selector: 'app-beer-details',
-  templateUrl: './beer-details.component.html'
+  selector: 'app-brewery',
+  templateUrl: './brewery.component.html'
 })
-export class BeerDetailsComponent implements OnInit {
-  beer : FirebaseObjectObservable<any>;
+export class BreweryComponent implements OnInit {
+  brewery : FirebaseObjectObservable<any>;
 
   constructor(private firebaseService: FirebaseService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.beer = this.route.params.map((params: Params) => this.firebaseService.getBeerById(params['beerid'])).switch();
+      this.brewery = this.route.params.map((params: Params) => this.firebaseService.getBreweryById(params['breweryid'])).switch();
   }
 
 }

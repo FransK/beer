@@ -18,10 +18,12 @@ import { BeerComponent } from './beer.component';
 import { MainComponent } from './beer-main/main.component';
 import { BeerDetailsComponent } from './beer-details/beer-details.component';
 import { BeerThumbComponent } from './beer-thumb/beer-thumb.component';
+import { BreweryComponent } from './beer-brewery/brewery.component';
 import { FeaturesComponent } from './beer-features/features.component';
 import { SingleFeatureComponent } from './beer-features/single-feature/single-feature.component';
 import { RecentsComponent } from './beer-recents/recents.component';
 import { ReviewComponent } from './beer-review/review.component';
+import { ReviewerComponent } from './beer-reviewer/reviewer.component';
 import { SearchComponent } from './beer-search/beer-search.component';
 import { LoginComponent } from './login/login.component';
 
@@ -40,16 +42,16 @@ import { LoginComponent } from './login/login.component';
     MainComponent,
     BeerDetailsComponent,
     BeerThumbComponent,
+    BreweryComponent,
     FeaturesComponent,
     SingleFeatureComponent,
     RecentsComponent,
     ReviewComponent,
+    ReviewerComponent,
     SearchComponent,
     LoginComponent
   ],
-  exports: [
-    BeerDetailsComponent,
-  ],
+  exports: [  ],
   providers: [
     FirebaseService,
     ObjectArrayPipe
